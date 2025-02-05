@@ -7,18 +7,18 @@ const Carousel = ({
   autoSlideInterval = 3000,
   Secondslides,
 }) => {
-  const [curr, setcurr] = useState(0);
+  const [index, setIndex] = useState(0);
   // const [subImageIndex, setSubImageIndex] = useState(0);
 
   const prev = () => {
-    // setcurr((curr) => (curr == 0 ? slides.length - 1 : (curr - 1)));
+    setIndex((index) => (index == 0 ? Secondslides.length - 1 : index - 1));
     //goto implementation
-    // setcurr((curr) => (curr = 2));
+    // setIndex((curr) => (curr = 2));
     // setSubImageIndex(subImageIndex==0 ? );
   };
 
   const next = () => {
-    setcurr((curr) => (curr == slides.length - 1 ? 0 : curr + 1));
+    setIndex((index) => (index == Secondslides.length - 1 ? 0 : index + 1));
   };
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Carousel = ({
         {/* --------- Carousel slides display ------------- */}
         <div
           className="flex transition-transform ease-out duration-500"
-          style={{ transform: `translateX(-${curr * 100}%)` }}
+          style={{ transform: `translateX(-${index * 100}%)` }}
         >
           {slides}
         </div>
@@ -61,7 +61,7 @@ const Carousel = ({
                 key={i}
                 className={`
                 transition-all w-3 h-3 bg-white rounded-full
-                ${curr == i ? "p-2" : "bg-opacity-50"}
+                ${index == i ? "p-2" : "bg-opacity-50"}
                     `}
               />
             ))}
@@ -79,9 +79,9 @@ const Carousel = ({
         //   transition: "transform 0.5s ease",
         // }}
       >
-        {Secondslides[curr].subImages.map((image, i) => (
+        {Secondslides[index].subImages.map((image, i) => (
           <img
-            autoSlide={true}
+            // autoSlide={true}
             className="relaive w-screen h-screen object-cover"
             key={i}
             src={image}

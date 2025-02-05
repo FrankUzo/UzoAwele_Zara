@@ -1,82 +1,124 @@
+import logo_icon from "./Logo.png";
+
+import carousel_img1 from "../assets/Cp_img1.avif";
+import carousel_img2 from "../assets/Cp_img2.avif";
+import carousel_img3 from "../assets/Cp_img3.avif";
+import carousel_img4 from "../assets/Cp_img4.webp";
+import carousel_img5 from "../assets/Cp_img5.avif";
+import sub_carousel_img1 from "../assets/SCp_img1.avif";
+import sub_carousel_img2 from "../assets/SCp_img2.avif";
+import sub_carousel_img3 from "../assets/SCp_img3.avif";
+import sub_carousel_img4 from "../assets/SCp_img4.avif";
+import sub_carousel_img5 from "../assets/SCp_img5.jpg";
+import sub_carousel_img6 from "../assets/SCp_img6.webp";
+import sub_carousel_img7 from "../assets/SCp_img7.avif";
+import sub_carousel_img8 from "../assets/SCp_img8.avif";
+import sub_carousel_img9 from "../assets/SCp_img9.jpg";
+import sub_carousel_img10 from "../assets/SCp_img10.jpg";
+import sub_carousel_img11 from "../assets/SCp_img11.webp";
+import sub_carousel_img12 from "../assets/SCp_img12.jpg";
+import sub_carousel_img13 from "../assets/SCp_img13.jpg";
+
 import p_img1 from "./p_img1.jpg";
 import p_img2_1 from "./p_img2_1.jpg";
 import p_img2_2 from "./p_img2_2.jpg";
 import p_img2_3 from "./p_img2_3.jpg";
 import p_img2_4 from "./p_img2_4.jpg";
 import p_img3 from "./p_img3.jpg";
-import p_img4 from "./p_img4.jpg";
+import p_img4 from "./p_img4.avif";
 import p_img5 from "./p_img5.jpg";
 import p_img6 from "./p_img6.jpg";
 import p_img7 from "./p_img7.jpg";
-import p_img8 from "./p_img8.jpg";
+import p_img8 from "./p_img8.avif";
 import p_img9 from "./p_img9.jpg";
-import p_img10 from "./p_img10.jpg";
-import p_img11 from "./p_img11.jpg";
+import p_img10 from "./p_img10.avif";
+import p_img11 from "./p_img11.avif";
 import p_img12 from "./p_img12.jpg";
-import p_img13 from "./p_img13.jpg";
-import p_img14 from "./p_img14.jpg";
-import p_img15 from "./p_img15.jpg";
-import p_img16 from "./p_img16.jpg";
-import p_img17 from "./p_img17.jpg";
-import p_img18 from "./p_img18.jpg";
-import p_img19 from "./p_img19.jpg";
-import p_img20 from "./p_img20.jpg";
-import p_img21 from "./p_img21.jpg";
+import p_img13 from "./p_img13.avif";
+import p_img14 from "./p_img14.avif";
+import p_img15 from "./p_img15.avif";
+import p_img16 from "./p_img16.avif";
+import p_img17 from "./p_img17.avif";
+import p_img18 from "./p_img18.avif";
+import p_img19 from "./p_img19.avif";
+import p_img20 from "./p_img20.avif";
+import p_img21 from "./p_img21.avif";
 import p_img22 from "./p_img22.jpg";
-import p_img23 from "./p_img23.jpg";
-import p_img24 from "./p_img24.jpg";
-import p_img25 from "./p_img25.jpg";
-import p_img26 from "./p_img26.jpg";
-import p_img27 from "./p_img27.jpg";
-import p_img28 from "./p_img28.jpg";
-import p_img29 from "./p_img29.jpg";
-import p_img30 from "./p_img30.jpg";
-import p_img31 from "./p_img31.jpg";
-import p_img32 from "./p_img32.jpg";
-import p_img33 from "./p_img33.jpg";
-import p_img34 from "./p_img34.jpg";
-import p_img35 from "./p_img35.jpg";
+import p_img23 from "./p_img23.avif";
+import p_img24 from "./p_img24.avif";
+import p_img25 from "./p_img25.webp";
+import p_img26 from "./p_img26.avif";
+import p_img27 from "./p_img27.avif";
+import p_img28 from "./p_img28.avif";
+import p_img29 from "./p_img29.avif";
+import p_img30 from "./p_img30.avif";
+import p_img31 from "./p_img31.avif";
+import p_img32 from "./p_img32.avif";
+import p_img33 from "./p_img33.avif";
+import p_img34 from "./p_img34.avif";
+import p_img35 from "./p_img35.avif";
 import p_img36 from "./p_img36.jpg";
 import p_img37 from "./p_img37.jpg";
 import p_img38 from "./p_img38.jpg";
-import p_img39 from "./p_img39.jpg";
-import p_img40 from "./p_img40.jpg";
-import p_img41 from "./p_img41.jpg";
-import p_img42 from "./p_img42.jpg";
-import p_img43 from "./p_img43.jpg";
-import p_img44 from "./p_img44.jpg";
-import p_img45 from "./p_img45.jpg";
-import p_img46 from "./p_img46.jpg";
-import p_img47 from "./p_img47.jpg";
-import p_img48 from "./p_img48.jpg";
-import p_img49 from "./p_img49.jpg";
-import p_img50 from "./p_img50.jpg";
-import p_img51 from "./p_img51.jpg";
-import p_img52 from "./p_img52.jpg";
-import p_img53 from "./p_img53.jpg";
-import p_img54 from "./p_img54.jpg";
-import p_img55 from "./p_img55.jpg";
-import p_img56 from "./p_img56.jpg";
-import p_img57 from "./p_img57.jpg";
-import p_img58 from "./p_img58.jpg";
-import p_img59 from "./p_img59.jpg";
-import p_img60 from "./p_img60.jpg";
-import p_img61 from "./p_img61.jpg";
-import p_img62 from "./p_img62.jpg";
-import p_img63 from "./p_img63.jpg";
-import p_img64 from "./p_img64.jpg";
-import p_img65 from "./p_img65.jpg";
-import p_img66 from "./p_img66.jpg";
-import p_img67 from "./p_img67.jpg";
-import p_img68 from "./p_img68.jpg";
-import p_img69 from "./p_img69.jpg";
-import p_img70 from "./p_img70.jpg";
-
-import logo_icon from "./Logo.png";
+import p_img39 from "./p_img39.avif";
+import p_img40 from "./p_img40.avif";
+import p_img41 from "./p_img41.avif";
+import p_img42 from "./p_img42.avif";
+import p_img43 from "./p_img43.avif";
+import p_img44 from "./p_img44.avif";
+import p_img45 from "./p_img45.avif";
+import p_img46 from "./p_img46.avif";
+import p_img47 from "./p_img47.avif";
+import p_img48 from "./p_img48.avif";
+import p_img49 from "./p_img49.avif";
+import p_img50 from "./p_img50.avif";
+import p_img51 from "./p_img51.avif";
+import p_img52 from "./p_img52.avif";
+import p_img53 from "./p_img53.avif";
+import p_img54 from "./p_img54.avif";
+import p_img55 from "./p_img55.avif";
+import p_img56 from "./p_img56.avif";
+import p_img57 from "./p_img57.avif";
+import p_img58 from "./p_img58.avif";
+import p_img59 from "./p_img59.avif";
+import p_img60 from "./p_img60.avif";
+import p_img61 from "./p_img61.avif";
+import p_img62 from "./p_img62.avif";
+import p_img63 from "./p_img63.avif";
+import p_img64 from "./p_img64.avif";
+import p_img65 from "./p_img65.avif";
+import p_img66 from "./p_img66.avif";
+import p_img67 from "./p_img67.avif";
+import p_img68 from "./p_img68.avif";
+import p_img69 from "./p_img69.avif";
+import p_img70 from "./p_img70.avif";
 
 export const assets = {
   logo_icon,
 };
+
+export const Secondslides = [
+  {
+    mainImage: carousel_img1,
+    subImages: [sub_carousel_img1, sub_carousel_img2, sub_carousel_img3],
+  },
+  {
+    mainImage: carousel_img2,
+    subImages: [sub_carousel_img4, sub_carousel_img5, sub_carousel_img6],
+  },
+  {
+    mainImage: carousel_img3,
+    subImages: [sub_carousel_img7, sub_carousel_img8, sub_carousel_img9],
+  },
+  {
+    mainImage: carousel_img4,
+    subImages: [sub_carousel_img10, sub_carousel_img11, sub_carousel_img12],
+  },
+  {
+    mainImage: carousel_img5,
+    subImages: [sub_carousel_img13, carousel_img2, carousel_img4],
+  },
+];
 
 export const products = [
   {
