@@ -15,13 +15,19 @@ import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
+  const [showCategoryFilter, setShowCategoryFilter] = useState("");
+  console.log("showCategoryFilter:", showCategoryFilter);
 
   const [showSalesfilter, setShowSalesfilter] = useState(false);
   const [showCollectionsfilter, setShowCollectionsfilter] = useState(false);
   const targetRef1 = useRef(null);
 
-  const { categoryPathName, filter, setCategoryPathName, setFilter } =
-    useContext(ShopContext);
+  const {
+    firstCategoryPathName,
+    // secondCategoryPathName,
+    // setFirstCategoryPathName,
+    // setSecondCategoryPathName,
+  } = useContext(ShopContext);
 
   return (
     <div className="px-0 sm:px-5 fixed top-0 left-0 w-full text-white flex flex-col z-10  bg-black bg-opacity-20">
@@ -128,7 +134,7 @@ const Navbar = () => {
             <Link to="/">
               <img
                 onClick={() => {
-                  setCategoryPathName("HOME");
+                  setShowCategoryFilter("HOME");
                 }}
                 src={assets.logo_icon}
                 className={`pl-6 w-[280px]  sm:w-[280px] cursor-pointer ${
@@ -149,10 +155,10 @@ const Navbar = () => {
             <li
               onClick={() => {
                 targetRef1.current?.scrollIntoView();
-                setCategoryPathName("WOMAN");
+                setShowCategoryFilter("WOMAN");
               }}
               className={`flex-shrink-0 items-center gap-1 cursor-pointer text-md text-gray-600 ${
-                categoryPathName === "Women" ? "text-black font-bold" : ""
+                showCategoryFilter === "WOMAN" ? "text-black font-bold" : ""
               }`}
             >
               WOMAN
@@ -160,10 +166,10 @@ const Navbar = () => {
             <li
               onClick={() => {
                 targetRef1.current?.scrollIntoView();
-                setCategoryPathName("MAN");
+                setShowCategoryFilter("MAN");
               }}
               className={`flex-shrink-0 items-center gap-1 cursor-pointer text-md text-gray-600 ${
-                categoryPathName === "MAN" ? "text-black font-bold" : ""
+                showCategoryFilter === "MAN" ? "text-black font-bold" : ""
               }`}
             >
               MAN
@@ -171,10 +177,10 @@ const Navbar = () => {
             <li
               onClick={() => {
                 targetRef1.current?.scrollIntoView();
-                setCategoryPathName("KIDS");
+                setShowCategoryFilter("KIDS");
               }}
               className={`flex-shrink-0 items-center gap-1 cursor-pointer text-md text-gray-600 ${
-                categoryPathName === "KIDS" ? "text-black font-bold" : ""
+                showCategoryFilter === "KIDS" ? "text-black font-bold" : ""
               }`}
             >
               KIDS
@@ -182,18 +188,21 @@ const Navbar = () => {
             <li
               onClick={() => {
                 targetRef1.current?.scrollIntoView();
-                setCategoryPathName("HOME");
+                setShowCategoryFilter("HOME");
               }}
               className={`flex-shrink-0 items-center gap-1 cursor-pointer text-md text-gray-600 ${
-                categoryPathName === "HOME" ? "text-black font-bold" : ""
+                showCategoryFilter === "HOME" ? "text-black font-bold" : ""
               }`}
             >
               HOME
             </li>
             <li
-              onClick={() => targetRef1.current?.scrollIntoView()}
+              onClick={() => {
+                targetRef1.current?.scrollIntoView();
+                setShowCategoryFilter("MASSIMO DUTTI");
+              }}
               className={`flex-shrink-0 items-center gap-1 cursor-pointer text-md text-gray-600 ${
-                categoryPathName === "MASSIMO DUTTI"
+                showCategoryFilter === "MASSIMO DUTTI"
                   ? "text-black font-bold"
                   : ""
               }`}
@@ -201,16 +210,22 @@ const Navbar = () => {
               MASSIMO DUTTI
             </li>
             <li
+              onClick={() => {
+                setShowCategoryFilter("BEAUTY");
+              }}
               className={`flex-shrink-0 items-center gap-1 cursor-pointer text-md text-gray-600 ${
-                categoryPathName === "BEAUTY" ? "text-black font-bold" : ""
+                showCategoryFilter === "BEAUTY" ? "text-black font-bold" : ""
               }`}
             >
               BEAUTY
             </li>
             <li
+              onClick={() => {
+                setShowCategoryFilter("ZARA PRE-OWNED");
+              }}
               ref={targetRef1}
               className={`flex-shrink-0 items-center gap-1 cursor-pointer text-md text-gray-600 ${
-                categoryPathName === "ZARA PRE-OWNED"
+                showCategoryFilter === "ZARA PRE-OWNED"
                   ? "text-black font-bold"
                   : ""
               }`}
@@ -237,12 +252,14 @@ const Navbar = () => {
                 {/* New Collections filter */}
                 <div
                   className={`m-6 px-2 pt-2  bg-pink-500 text-black ${
-                    visible && categoryPathName === "Women" ? "block" : "hidden"
+                    visible && showCategoryFilter === "WOMAN"
+                      ? "block"
+                      : "hidden"
                   }`}
                 >
                   <div
                     className={`${
-                      categoryPathName === "Women" ? "block" : "hidden"
+                      showCategoryFilter === "WOMAN" ? "block" : "hidden"
                     }`}
                   >
                     <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
@@ -276,7 +293,8 @@ const Navbar = () => {
                       <Link
                         onClick={() => {
                           setVisible(false);
-                          // setCategoryPathName("Women");
+                          setShowCategoryFilter("WOMAN");
+                          // setFirstCategoryPathName("Women");
                         }}
                         to="/Women/view_all_new"
                         className="border-b-2 border-green-400 pb-1 mb-2"
@@ -285,6 +303,7 @@ const Navbar = () => {
                       </Link>
                       <Link
                         onClick={() => {
+                          setVisible(false);
                           setFilter("Topwear");
                         }}
                         to="/Women/Topwear"
@@ -293,8 +312,9 @@ const Navbar = () => {
                         TOP
                       </Link>
                       <Link
-                        to="/Woman/Bottomwear"
+                        to="/Women/Bottomwear"
                         onClick={() => {
+                          setVisible(false);
                           setFilter("Bottomwear");
                         }}
                         className="border-b-2 border-green-400 pb-1 mb-2"
@@ -302,15 +322,22 @@ const Navbar = () => {
                         BOTTOM
                       </Link>
                       <Link
-                        to="/Woman/Winterwear"
+                        to="/Women/Winterwear"
                         onClick={() => {
+                          setVisible(false);
                           setFilter("Winterwear");
                         }}
                         className="border-b-2 border-green-400 pb-1 mb-2"
                       >
                         WINTER
                       </Link>
-                      <Link className="border-b-2 border-green-400 mb-2">
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                          setFilter("Tops/Bodysuits");
+                        }}
+                        className="border-b-2 border-green-400 mb-2"
+                      >
                         TOPS/BODYSUITS
                       </Link>
 
@@ -324,12 +351,14 @@ const Navbar = () => {
                 {/* sales filter */}
                 <div
                   className={`m-6 px-2 pt-2  bg-green-400 text-black ${
-                    visible && categoryPathName === "Women" ? "block" : "hidden"
+                    visible && showCategoryFilter === "WOMAN"
+                      ? "block"
+                      : "hidden"
                   }`}
                 >
                   <div
                     className={`${
-                      categoryPathName === "Women" ? "block" : "hidden"
+                      showCategoryFilter === "WOMAN" ? "block" : "hidden"
                     }`}
                   >
                     <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
@@ -350,22 +379,52 @@ const Navbar = () => {
                         showSalesfilter ? "block" : "hidden"
                       }`}
                     >
-                      <Link className="border-b-2 border-red-800 pb-1 mb-2">
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
                         OUTERWEAR
                       </Link>
-                      <Link className="border-b-2 border-red-800 pb-1 mb-2">
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
                         DRESSES
                       </Link>
-                      <Link className="border-b-2 border-red-800 pb-1 mb-2">
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
                         BLAZERS/VESTS
                       </Link>
-                      <Link className="border-b-2 border-red-800 pb-1 mb-2">
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
                         CARDIGANS/SWEATERS
                       </Link>
-                      <Link className="border-b-2 border-red-800 pb-1 mb-2">
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
                         TOPS/BODYSUITS
                       </Link>
-                      <Link className="border-b-2 border-red-800 pb-1 mb-2">
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
                         SHIRTS/BLOUSES
                       </Link>
                     </ul>
@@ -375,7 +434,9 @@ const Navbar = () => {
                 {/* Filter footer buttons */}
                 <div
                   className={`m-6 px-2 pt-2  text-black ${
-                    visible && categoryPathName === "Women" ? "block" : "hidden"
+                    visible && firstCategoryPathName === "Women"
+                      ? "block"
+                      : "hidden"
                   }`}
                 >
                   <div className="flex gap-2 text-[12px]">
@@ -403,7 +464,7 @@ const Navbar = () => {
                 {/* sales filter */}
                 <div
                   className={`m-6 px-2 pt-2  bg-green-400 text-black ${
-                    visible && categoryPathName === "MAN" ? "block" : "hidden"
+                    visible && showCategoryFilter === "MAN" ? "block" : "hidden"
                   }`}
                 >
                   <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
@@ -448,12 +509,12 @@ const Navbar = () => {
                 {/* New Collections filter */}
                 <div
                   className={`m-6 px-2 pt-2  bg-red-800 text-black ${
-                    visible && categoryPathName === "MAN" ? "block" : "hidden"
+                    visible && showCategoryFilter === "MAN" ? "block" : "hidden"
                   }`}
                 >
                   <div
                     className={`${
-                      categoryPathName === "MAN" ? "block" : "hidden"
+                      showCategoryFilter === "MAN" ? "block" : "hidden"
                     }`}
                   >
                     <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
@@ -506,7 +567,7 @@ const Navbar = () => {
                 {/* Filter footer buttons */}
                 <div
                   className={`m-6 px-2 pt-2  text-black ${
-                    visible && categoryPathName === "MAN" ? "block" : "hidden"
+                    visible && showCategoryFilter === "MAN" ? "block" : "hidden"
                   }`}
                 >
                   <div className="flex gap-2 text-[12px]">
@@ -534,7 +595,9 @@ const Navbar = () => {
                 {/* sales filter */}
                 <div
                   className={`m-6 px-2 pt-2  bg-green-400 text-black ${
-                    visible && categoryPathName === "KIDS" ? "block" : "hidden"
+                    visible && firstCategoryPathName === "KIDS"
+                      ? "block"
+                      : "hidden"
                   }`}
                 >
                   <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
@@ -592,12 +655,14 @@ const Navbar = () => {
                 {/* New Collections filter */}
                 <div
                   className={`m-6 px-2 pt-2  bg-red-800 text-black ${
-                    visible && categoryPathName === "KIDS" ? "block" : "hidden"
+                    visible && firstCategoryPathName === "KIDS"
+                      ? "block"
+                      : "hidden"
                   }`}
                 >
                   <div
                     className={`${
-                      categoryPathName === "KIDS" ? "block" : "hidden"
+                      firstCategoryPathName === "KIDS" ? "block" : "hidden"
                     }`}
                   >
                     <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
@@ -650,7 +715,9 @@ const Navbar = () => {
                 {/* Filter footer buttons */}
                 <div
                   className={`m-6 px-2 pt-2  text-black ${
-                    visible && categoryPathName === "KIDS" ? "block" : "hidden"
+                    visible && firstCategoryPathName === "KIDS"
+                      ? "block"
+                      : "hidden"
                   }`}
                 >
                   <div className="flex gap-2 text-[12px]">
@@ -678,7 +745,9 @@ const Navbar = () => {
                 {/* sales filter */}
                 <div
                   className={`m-6 px-2 pt-2  bg-green-400 text-black ${
-                    visible && categoryPathName === "HOME" ? "block" : "hidden"
+                    visible && firstCategoryPathName === "HOME"
+                      ? "block"
+                      : "hidden"
                   }`}
                 >
                   <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
@@ -736,12 +805,14 @@ const Navbar = () => {
                 {/* New Collections filter */}
                 <div
                   className={`m-6 px-2 pt-2  bg-red-800 text-black ${
-                    visible && categoryPathName === "HOME" ? "block" : "hidden"
+                    visible && firstCategoryPathName === "HOME"
+                      ? "block"
+                      : "hidden"
                   }`}
                 >
                   <div
                     className={`${
-                      categoryPathName === "HOME" ? "block" : "hidden"
+                      firstCategoryPathName === "HOME" ? "block" : "hidden"
                     }`}
                   >
                     <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
@@ -794,7 +865,9 @@ const Navbar = () => {
                 {/* Filter footer buttons */}
                 <div
                   className={`m-6 px-2 pt-2  text-black ${
-                    visible && categoryPathName === "HOME" ? "block" : "hidden"
+                    visible && firstCategoryPathName === "HOME"
+                      ? "block"
+                      : "hidden"
                   }`}
                 >
                   <div className="flex gap-2 text-[12px]">
@@ -886,15 +959,15 @@ const Navbar = () => {
         <ul className="hidden sm:flex gap-3">
           <li
             onClick={() => {
-              setCategoryPathName("Women");
+              setShowCategoryFilter("WOMAN");
               setVisible(true);
             }}
             className={`flex flex-col items-center gap-1 cursor-pointer text-xs hover:text-gray-600 hover:bg-gray-200 hover:px-3 hover:py-1 hover:rounded ${
-              categoryPathName === "Women" ? "text-black font-bold" : ""
+              showCategoryFilter === "WOMAN" ? "text-black font-bold" : ""
             }`}
           >
             WOMAN
-            {categoryPathName === "Women" ? (
+            {showCategoryFilter === "WOMAN" ? (
               <hr className=" w-2/4 border-none h-[2.5px] bg-red-700" />
             ) : (
               <></>
@@ -902,15 +975,15 @@ const Navbar = () => {
           </li>
           <li
             onClick={() => {
-              setCategoryPathName("MAN");
+              setShowCategoryFilter("MAN");
               setVisible(true);
             }}
             className={`flex flex-col items-center gap-1 cursor-pointer text-xs hover:text-gray-600 hover:bg-gray-200 hover:px-3 hover:py-1 hover:rounded ${
-              categoryPathName === "MAN" ? "text-black font-bold" : ""
+              showCategoryFilter === "MAN" ? "text-black font-bold" : ""
             }`}
           >
             MAN
-            {categoryPathName === "MAN" ? (
+            {showCategoryFilter === "MAN" ? (
               <hr className=" w-2/4 border-none h-[2.5px] bg-red-700" />
             ) : (
               <></>
@@ -918,15 +991,15 @@ const Navbar = () => {
           </li>
           <li
             onClick={() => {
-              setCategoryPathName("KIDS");
+              setShowCategoryFilter("KIDS");
               setVisible(true);
             }}
             className={`flex flex-col items-center gap-1 cursor-pointer text-xs hover:text-gray-600 hover:bg-gray-200 hover:px-3 hover:py-1 hover:rounded ${
-              categoryPathName === "KIDS" ? "text-black font-bold" : ""
+              showCategoryFilter === "KIDS" ? "text-black font-bold" : ""
             }`}
           >
             KIDS
-            {categoryPathName === "KIDS" ? (
+            {showCategoryFilter === "KIDS" ? (
               <hr className=" w-2/4 border-none h-[2.5px] bg-red-700" />
             ) : (
               <></>
@@ -934,15 +1007,15 @@ const Navbar = () => {
           </li>
           <li
             onClick={() => {
-              setCategoryPathName("HOME");
+              setShowCategoryFilter("HOME");
               setVisible(true);
             }}
             className={`flex flex-col items-center gap-1 cursor-pointer text-xs hover:text-gray-600 hover:bg-gray-200 hover:px-3 hover:py-1 hover:rounded ${
-              categoryPathName === "HOME" ? "text-black font-bold" : ""
+              showCategoryFilter === "HOME" ? "text-black font-bold" : ""
             }`}
           >
             HOME
-            {categoryPathName === "HOME" ? (
+            {showCategoryFilter === "HOME" ? (
               <hr className=" w-2/4 border-none h-[2.5px] bg-red-700" />
             ) : (
               <></>
@@ -950,15 +1023,17 @@ const Navbar = () => {
           </li>
           <li
             onClick={() => {
-              setCategoryPathName("MASSIMO DUTTI");
+              setShowCategoryFilter("MASSIMO DUTTI");
               setVisible(true);
             }}
             className={`flex flex-col items-center gap-1 cursor-pointer text-xs hover:text-gray-600 hover:bg-gray-200 hover:px-3 hover:py-1 hover:rounded ${
-              categoryPathName === "MASSIMO DUTTI" ? "text-black font-bold" : ""
+              showCategoryFilter === "MASSIMO DUTTI"
+                ? "text-black font-bold"
+                : ""
             }`}
           >
             MASSIMO DUTTI
-            {categoryPathName === "MASSIMO DUTTI" ? (
+            {showCategoryFilter === "MASSIMO DUTTI" ? (
               <hr className=" w-2/4 border-none h-[2.5px] bg-red-700" />
             ) : (
               <></>
@@ -966,15 +1041,15 @@ const Navbar = () => {
           </li>
           <li
             onClick={() => {
-              setCategoryPathName("BEAUTY");
+              setShowCategoryFilter("BEAUTY");
               setVisible(true);
             }}
             className={`flex flex-col items-center gap-1 cursor-pointer text-xs hover:text-gray-600 hover:bg-gray-200 hover:px-3 hover:py-1 hover:rounded ${
-              categoryPathName === "BEAUTY" ? "text-black font-bold" : ""
+              showCategoryFilter === "BEAUTY" ? "text-black font-bold" : ""
             }`}
           >
             BEAUTY
-            {categoryPathName === "BEAUTY" ? (
+            {showCategoryFilter === "BEAUTY" ? (
               <hr className=" w-2/4 border-none h-[2.5px] bg-red-700" />
             ) : (
               <></>
@@ -982,17 +1057,17 @@ const Navbar = () => {
           </li>
           <li
             onClick={() => {
-              setCategoryPathName("ZARA PRE-OWNED");
+              setShowCategoryFilter("ZARA PRE-OWNED");
               setVisible(true);
             }}
             className={`flex flex-col items-center gap-1 cursor-pointer text-xs hover:text-gray-600 hover:bg-gray-200 hover:px-3 hover:py-1 hover:rounded ${
-              categoryPathName === "ZARA PRE-OWNED"
+              showCategoryFilter === "ZARA PRE-OWNED"
                 ? "text-black font-bold"
                 : ""
             }`}
           >
             ZARA PRE-OWNED
-            {categoryPathName === "ZARA PRE-OWNED" ? (
+            {showCategoryFilter === "ZARA PRE-OWNED" ? (
               <hr className=" w-2/4 border-none h-[2.5px] bg-red-700" />
             ) : (
               <></>

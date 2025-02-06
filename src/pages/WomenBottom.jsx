@@ -4,9 +4,9 @@ import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 
 const WomenBottom = () => {
-  const { filterProducts } = useContext(ShopContext);
+  const { subFilterProducts } = useContext(ShopContext);
 
-  console.log(filterProducts);
+  console.log(subFilterProducts);
   return (
     <div>
       <div className="relative top-40">
@@ -14,7 +14,7 @@ const WomenBottom = () => {
           <Title text1={"WOMEN"} text2={"BOTTOM-WEARS COLLECTIONS"} />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
-          {filterProducts.map((item, index) => (
+          {subFilterProducts.map((item, index) => (
             <ProductItem
               key={index}
               id={item._id}
