@@ -10,24 +10,34 @@ const ShopConextProvider = (props) => {
 
   console.log(products);
   // const [category, setCategory] = useState([]);
-  const [categoryPathName, setCategoryPathName] = useState("");
-  console.log("categoryPathName", categoryPathName);
-  const [filter, setFilter] = useState("");
-  console.log("filter", filter);
+  const [firstCategoryPathName, setFistCategoryPathName] = useState("");
+  console.log("firstCategoryPathName:", firstCategoryPathName);
+  const [secondCategoryPathName, setSecondCategoryPathName] = useState("");
+
+  // const [categoryPathName, setCategoryPathName] = useState("");
+
   const [filterProducts, setFilterProducts] = useState([]);
+  const [subFilterProducts, setSubFilterProducts] = useState([]);
+  console.log("shop filterProducts:", filterProducts);
   const [className, setClassName] = useState("mdClass");
 
-  // const location = useLocation();
-  // // console.log("location:", location);
+  const location = useLocation();
 
-  // const currentURL = location.pathname;
-  // // console.log("currentURL:", currentURL);
+  const currentURL = location.pathname;
+  console.log("currentURL:", currentURL);
 
-  // const urlSplittedPart = currentURL.split("/");
-  // // console.log("logging out splitted Location:" + urlSplittedPart);
+  useEffect(() => {
+    var splittedUrl = currentURL.split("/");
+    console.log("Loging out splittedUrl:", splittedUrl);
 
-  // setCategoryPathName(urlSplittedPart[1]);
-  // console.log("categoryPathName:", categoryPathName);
+    var firstWanted = splittedUrl[1];
+    console.log("firstWanted:", firstWanted);
+    setFistCategoryPathName(firstWanted);
+
+    var secondWanted = splittedUrl[2];
+    console.log("secondWanted:", secondWanted);
+    setSecondCategoryPathName(secondWanted);
+  }, [currentURL]);
 
   let mdClass = "grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6";
   let smClass = "grid sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12";
@@ -43,51 +53,53 @@ const ShopConextProvider = (props) => {
   // };
   // console.log("category", category);
 
-  const applyFiler = () => {
+  const applyFilter = () => {
     let productsCopy = products.slice();
-    // console.log("productsCopy", productsCopy);
-    // console.log("categoryPathName", categoryPathName);
+    console.log("shop productsCopy", productsCopy);
 
-    if (categoryPathName !== null) {
+    console.log("firstCategoryPathName", firstCategoryPathName);
+
+    if (firstCategoryPathName !== null) {
       productsCopy = productsCopy.filter((item) =>
-        categoryPathName.includes(item.category)
+        firstCategoryPathName.includes(item.category)
       );
     } else {
     }
-    // console.log("productsCopy", productsCopy);
+    console.log("productsCopy", productsCopy);
     setFilterProducts(productsCopy);
   };
 
-  const applySubFiler = () => {
+  const applySubFilter = () => {
     let productsCopy = products.slice();
 
-    if (categoryPathName !== null && filter) {
+    if (firstCategoryPathName !== null && secondCategoryPathName) {
       productsCopy = productsCopy.filter(
         (item) =>
-          categoryPathName.includes(item.category) &&
-          filter.includes(item.subCategory)
+          firstCategoryPathName.includes(item.category) &&
+          secondCategoryPathName.includes(item.subCategory)
       );
     }
-    setFilterProducts(productsCopy);
+    setSubFilterProducts(productsCopy);
   };
 
   useEffect(() => {
-    applyFiler();
-  }, [categoryPathName]);
+    applyFilter();
+  }, [firstCategoryPathName]);
 
   useEffect(() => {
-    applySubFiler();
-  }, [filter]);
+    applySubFilter();
+  }, [firstCategoryPathName, secondCategoryPathName]);
 
   const value = {
     products,
     currency,
     delivery_fee,
     filterProducts,
-    categoryPathName,
-    setCategoryPathName,
-    filter,
-    setFilter,
+    subFilterProducts,
+    firstCategoryPathName,
+    setFistCategoryPathName,
+    secondCategoryPathName,
+    setSecondCategoryPathName,
     className,
     setClassName,
     mdClass,
