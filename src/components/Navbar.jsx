@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { assets } from "../assets/assets";
 import { Link } from "react-router-dom";
 import { IoIosPersonAdd } from "react-icons/io";
@@ -10,19 +10,23 @@ import {
   ShoppingCart,
   Search,
 } from "react-feather";
+import { ShopContext } from "../context/ShopContext";
+// import Carousel from "./Carousel";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
-  const [categoryPathName, setCategoryPathName] = useState("HOME");
+
   const [showSalesfilter, setShowSalesfilter] = useState(false);
   const [showCollectionsfilter, setShowCollectionsfilter] = useState(false);
-  console.log(categoryPathName);
   const targetRef1 = useRef(null);
+
+  const { categoryPathName, filter, setCategoryPathName, setFilter } =
+    useContext(ShopContext);
 
   return (
     <div className="px-0 sm:px-5 fixed top-0 left-0 w-full text-white flex flex-col z-10  bg-black bg-opacity-20">
       <div
-        className={`flex h-[90px] sm:h-[140px] items-start justify-between pt-5 sm:bg-transparent ${
+        className={`flex h-[65px] sm:h-[140px] items-start justify-between pt-5 sm:bg-transparent ${
           visible ? "bg-white" : "bg-transparent"
         }`}
       >
@@ -120,14 +124,22 @@ const Navbar = () => {
               : ""
           }`}
         >
-          <div className="flex flex-col mt-[-8px]">
-            <img
-              src={assets.logo_icon}
-              className={`pl-6 w-[280px]  sm:w-[280px] ${
-                visible ? "hidden sm:block absolue left-0" : "w-full"
-              }`}
-              alt=""
-            />
+          <div className="group flex flex-col mt-[-8px]">
+            <Link to="/">
+              <img
+                onClick={() => {
+                  setCategoryPathName("HOME");
+                }}
+                src={assets.logo_icon}
+                className={`pl-6 w-[280px]  sm:w-[280px] cursor-pointer ${
+                  visible ? "hidden sm:block absolue left-0" : "w-full"
+                }`}
+                alt=""
+              />
+            </Link>
+            <p className="hidden group-hover:block absolute dropdown-menu left-36 top-24 py-1 px-3 rounded bg-white font-semibold text-sm text-gray-500">
+              CLICK TO GO TO HOME PAGE
+            </p>
           </div>
           <ul
             className={`flex gap-4 mt-15 sm:mt-[70px] px-4 pt-8 pb-2  overflow-x-scroll ${
@@ -140,7 +152,7 @@ const Navbar = () => {
                 setCategoryPathName("WOMAN");
               }}
               className={`flex-shrink-0 items-center gap-1 cursor-pointer text-md text-gray-600 ${
-                categoryPathName === "WOMAN" ? "text-black font-bold" : ""
+                categoryPathName === "Women" ? "text-black font-bold" : ""
               }`}
             >
               WOMAN
@@ -222,15 +234,102 @@ const Navbar = () => {
             <div className="max-h-screen overflow-y-auto p-4">
               {/* women filter */}
               <div className="womens-filter-container">
-                {/* sales filter */}
+                {/* New Collections filter */}
                 <div
-                  className={`m-6 px-2 pt-2  bg-green-400 text-black ${
-                    visible && categoryPathName === "WOMAN" ? "block" : "hidden"
+                  className={`m-6 px-2 pt-2  bg-pink-500 text-black ${
+                    visible && categoryPathName === "Women" ? "block" : "hidden"
                   }`}
                 >
                   <div
                     className={`${
-                      categoryPathName === "WOMAN" ? "block" : "hidden"
+                      categoryPathName === "Women" ? "block" : "hidden"
+                    }`}
+                  >
+                    <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
+                      <p
+                        onClick={() => {
+                          setShowCollectionsfilter(true);
+                        }}
+                      >
+                        NEW COLLECTIONS
+                      </p>
+                      <PlusCircle
+                        onClick={() => setShowCollectionsfilter(true)}
+                        color="green"
+                        className={` ${
+                          showCollectionsfilter ? "hidden" : "block"
+                        }`}
+                      />
+                      <MinusCircle
+                        onClick={() => setShowCollectionsfilter(false)}
+                        color="green"
+                        className={` ${
+                          showCollectionsfilter ? "block" : "hidden"
+                        }`}
+                      />
+                    </div>
+                    <ul
+                      className={`flex flex-col text-[12px] ${
+                        showCollectionsfilter ? "block" : "hidden"
+                      }`}
+                    >
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                          // setCategoryPathName("Women");
+                        }}
+                        to="/Women/view_all_new"
+                        className="border-b-2 border-green-400 pb-1 mb-2"
+                      >
+                        /// NEW
+                      </Link>
+                      <Link
+                        onClick={() => {
+                          setFilter("Topwear");
+                        }}
+                        to="/Women/Topwear"
+                        className="border-b-2 border-green-400 pb-1 mb-2"
+                      >
+                        TOP
+                      </Link>
+                      <Link
+                        to="/Woman/Bottomwear"
+                        onClick={() => {
+                          setFilter("Bottomwear");
+                        }}
+                        className="border-b-2 border-green-400 pb-1 mb-2"
+                      >
+                        BOTTOM
+                      </Link>
+                      <Link
+                        to="/Woman/Winterwear"
+                        onClick={() => {
+                          setFilter("Winterwear");
+                        }}
+                        className="border-b-2 border-green-400 pb-1 mb-2"
+                      >
+                        WINTER
+                      </Link>
+                      <Link className="border-b-2 border-green-400 mb-2">
+                        TOPS/BODYSUITS
+                      </Link>
+
+                      <button className="border border-black pb-1 mt-5 mb-2 w-[80px]">
+                        <Link className="">GIFT CARD</Link>
+                      </button>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* sales filter */}
+                <div
+                  className={`m-6 px-2 pt-2  bg-green-400 text-black ${
+                    visible && categoryPathName === "Women" ? "block" : "hidden"
+                  }`}
+                >
+                  <div
+                    className={`${
+                      categoryPathName === "Women" ? "block" : "hidden"
                     }`}
                   >
                     <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
@@ -273,72 +372,10 @@ const Navbar = () => {
                   </div>
                 </div>
 
-                {/* New Collections filter */}
-                <div
-                  className={`m-6 px-2 pt-2  bg-red-800 text-black ${
-                    visible && categoryPathName === "WOMAN" ? "block" : "hidden"
-                  }`}
-                >
-                  <div
-                    className={`${
-                      categoryPathName === "WOMAN" ? "block" : "hidden"
-                    }`}
-                  >
-                    <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
-                      <p onClick={() => setShowCollectionsfilter(true)}>
-                        NEW COLLECTIONS
-                      </p>
-                      <PlusCircle
-                        onClick={() => setShowCollectionsfilter(true)}
-                        color="green"
-                        className={` ${
-                          showCollectionsfilter ? "hidden" : "block"
-                        }`}
-                      />
-                      <MinusCircle
-                        onClick={() => setShowCollectionsfilter(false)}
-                        color="green"
-                        className={` ${
-                          showCollectionsfilter ? "block" : "hidden"
-                        }`}
-                      />
-                    </div>
-                    <ul
-                      className={`flex flex-col text-[12px] ${
-                        showCollectionsfilter ? "block" : "hidden"
-                      }`}
-                    >
-                      <Link
-                        onClick={() => setVisible(false)}
-                        to="/women/view_all_new"
-                        className="border-b-2 border-green-400 pb-1 mb-2"
-                      >
-                        /// NEW
-                      </Link>
-                      <Link className="border-b-2 border-green-400 pb-1 mb-2">
-                        TOP
-                      </Link>
-                      <Link className="border-b-2 border-green-400 pb-1 mb-2">
-                        BOTTOM
-                      </Link>
-                      <Link className="border-b-2 border-green-400 pb-1 mb-2">
-                        WINTER
-                      </Link>
-                      <Link className="border-b-2 border-green-400 mb-2">
-                        TOPS/BODYSUITS
-                      </Link>
-
-                      <button className="border border-black pb-1 mt-5 mb-2 w-[80px]">
-                        <Link className="">GIFT CARD</Link>
-                      </button>
-                    </ul>
-                  </div>
-                </div>
-
                 {/* Filter footer buttons */}
                 <div
                   className={`m-6 px-2 pt-2  text-black ${
-                    visible && categoryPathName === "WOMAN" ? "block" : "hidden"
+                    visible && categoryPathName === "Women" ? "block" : "hidden"
                   }`}
                 >
                   <div className="flex gap-2 text-[12px]">
@@ -849,15 +886,15 @@ const Navbar = () => {
         <ul className="hidden sm:flex gap-3">
           <li
             onClick={() => {
-              setCategoryPathName("WOMAN");
+              setCategoryPathName("Women");
               setVisible(true);
             }}
             className={`flex flex-col items-center gap-1 cursor-pointer text-xs hover:text-gray-600 hover:bg-gray-200 hover:px-3 hover:py-1 hover:rounded ${
-              categoryPathName === "WOMAN" ? "text-black font-bold" : ""
+              categoryPathName === "Women" ? "text-black font-bold" : ""
             }`}
           >
             WOMAN
-            {categoryPathName === "WOMAN" ? (
+            {categoryPathName === "Women" ? (
               <hr className=" w-2/4 border-none h-[2.5px] bg-red-700" />
             ) : (
               <></>
