@@ -11,7 +11,7 @@ const WomenNew = () => {
     useContext(ShopContext);
   const [classVisibility, setClassVisibility] = useState(false);
 
-  console.log(filterProducts);
+  console.log("filterProducts:", filterProducts);
 
   return (
     <div className="relative top-44">

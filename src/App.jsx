@@ -8,6 +8,7 @@ import WomenBottom from "./pages/WomenBottom";
 import WomenWinter from "./pages/WomenWinter";
 import LoginRegiter from "./pages/LoginRegiter";
 import ProductDetail from "./pages/ProductDetail";
+import FooterGeneral from "./components/FooterGeneral";
 
 const App = () => {
   return (
@@ -17,11 +18,12 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/Women/view_all_new" element={<WomenNew />} />
         <Route path="/Women/Topwear" element={<WomenTop />} />
-        <Route path="/Woman/Bottomwear" element={<WomenBottom />} />
-        <Route path="/Woman/Winterwear" element={<WomenWinter />} />
+        <Route path="/Women/Bottomwear" element={<WomenBottom />} />
+        <Route path="/Women/Winterwear" element={<WomenWinter />} />
         <Route path="/login_rigister" element={<LoginRegiter />} />
         <Route path="/product/:productId" element={<ProductDetail />} />
       </Routes>
+      <FooterGeneral className="mt-72" />
     </div>
   );
 };
