@@ -18,7 +18,7 @@ const WomenBottom = () => {
             <ProductItem
               key={index}
               id={item._id}
-              image={item.image}
+              image={item.image[0]}
               name={item.name.slice(0, 16)}
               price={item.price}
             />

@@ -3,7 +3,7 @@ import ProductItem from "../components/ProductItem";
 import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 
-const WomenWinter = () => {
+const MenWinter = () => {
   const { subFilterProducts } = useContext(ShopContext);
 
   console.log(subFilterProducts);
@@ -11,7 +11,7 @@ const WomenWinter = () => {
     <div>
       <div className="relative top-40">
         <div className="text-center py-8 text-3xl">
-          <Title text1={"WOMEN"} text2={"WINTER-WEARS COLLECTIONS"} />
+          <Title text1={"MEN"} text2={"WINTER-WEARS COLLECTIONS"} />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
           {subFilterProducts.map((item, index) => (
@@ -29,4 +29,4 @@ const WomenWinter = () => {
   );
 };
 
-export default WomenWinter;
+export default MenWinter;

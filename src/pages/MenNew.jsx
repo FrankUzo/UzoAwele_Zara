@@ -6,7 +6,7 @@ import { FaRegSquare } from "react-icons/fa";
 import { GoColumns } from "react-icons/go";
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
 
-const WomenNew = () => {
+const MenNew = () => {
   const { filterProducts, className, setClassName, mdClass, smClass, lgClass } =
     useContext(ShopContext);
   const [classVisibility, setClassVisibility] = useState(false);
@@ -16,7 +16,7 @@ const WomenNew = () => {
   return (
     <div className="relative top-24 sm:top-44">
       <div className="text-center pt-3 sm:pt-8 pb-2 text-2xl sm:text-3xl">
-        <Title text1={"WOMEN"} text2={"NEW COLLECTIONS"} />
+        <Title text1={"MEN"} text2={"NEW COLLECTIONS"} />
       </div>
       <div className="flex justify-end mr-4 mb-4">
         <FaRegSquare
@@ -57,4 +57,4 @@ const WomenNew = () => {
   );
 };
 
-export default WomenNew;
+export default MenNew;

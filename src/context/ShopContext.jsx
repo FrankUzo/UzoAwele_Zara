@@ -14,12 +14,15 @@ const ShopConextProvider = (props) => {
   console.log("firstCategoryPathName:", firstCategoryPathName);
   const [secondCategoryPathName, setSecondCategoryPathName] = useState("");
 
-  // const [categoryPathName, setCategoryPathName] = useState("");
-
   const [filterProducts, setFilterProducts] = useState([]);
   const [subFilterProducts, setSubFilterProducts] = useState([]);
   console.log("shop filterProducts:", filterProducts);
-  const [className, setClassName] = useState("mdClass");
+  const [className, setClassName] = useState(
+    "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6"
+  );
+  // const [modalButtonClassName, setModalButtonClassName] = useState(
+  //   "absolute top-72 left-24 inset-0 w-8 h-8 rounded-full text-3xl font-semibold bg-black opacity-50"
+  // );
 
   const location = useLocation();
 
@@ -39,9 +42,14 @@ const ShopConextProvider = (props) => {
     setSecondCategoryPathName(secondWanted);
   }, [currentURL]);
 
-  let mdClass = "grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6";
-  let smClass = "grid sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12";
-  let lgClass = "grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
+  // let modalButtonMdClass =
+  //   "absolute top-72 left-24 inset-0 w-8 h-8 rounded-full text-3xl font-semibold bg-black opacity-50";
+  // let modalButtonLgClass =
+  //   "absolute top-72 left-24 inset-0 w-8 h-8 rounded-full text-3xl font-semibold bg-black opacity-50";
+  let mdClass = "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6";
+  let smClass =
+    "grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12";
+  let lgClass = "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
 
   // const toggleCategory = () => {
   //   // if (category.includes(e.target.value)) {
