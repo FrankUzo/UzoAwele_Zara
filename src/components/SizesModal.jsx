@@ -7,9 +7,9 @@ const SizesModal = ({ size, setOpenModal }) => {
   const [isOpen, setIsOpen] = useState(false);
   // const { filterProducts } = useContext(ShopContext);?
   return (
-    <div className="">
+    <div className=" w-full">
       <div>
-        <table className="justify-center w-60">
+        <table className="justify-center w-full">
           <caption class="border-collapse border border-gray-400 py-1 bg-slate-200">
             <div className="flex items-center justify-between mx-3">
               <b>SELECT SIZES</b>

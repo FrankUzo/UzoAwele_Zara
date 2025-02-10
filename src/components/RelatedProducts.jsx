@@ -10,10 +10,15 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import Title from "./Title";
 import ProductItemTwo from "./ProductItemTwo";
+import { FaRegSquare } from "react-icons/fa";
+import { GoColumns } from "react-icons/go";
+import { HiOutlineSquares2X2 } from "react-icons/hi2";
 
 const RelatedProducts = ({ category, subCategory }) => {
-  const { products } = useContext(ShopContext);
+  const { products, className, setClassName, mdClass, smClass, lgClass } =
+    useContext(ShopContext);
   const [related, setRelated] = useState([]);
+  const [classVisibility, setClassVisibility] = useState(false);
 
   useEffect(() => {
     if (products.length > 0) {
@@ -32,14 +37,42 @@ const RelatedProducts = ({ category, subCategory }) => {
       <div className="text-center text-xl sm:text-3xl py-2">
         <Title text1={"Related"} text2={"PRODUCTS"} />
       </div>
-      <div className="grid grid-col-2 sm:grid-cols-3  md: grid-cols-2 lg:grid-cols-5  gap-y-0">
+      <div className="flex justify-end mr-4 mb-4">
+        <FaRegSquare
+          onClick={() => {
+            setClassName(lgClass);
+            setClassVisibility(true);
+          }}
+          className="mr-4 cursor-pointer"
+          size={30}
+        />
+        <GoColumns
+          onClick={() => {
+            setClassName(mdClass);
+            setClassVisibility(false);
+          }}
+          className="mr-4 cursor-pointer"
+          size={30}
+        />
+        <HiOutlineSquares2X2
+          onClick={() => {
+            setClassName(smClass);
+            setClassVisibility(true);
+          }}
+          className="mr-4 cursor-pointer"
+          size={30}
+        />
+      </div>
+      <div className={className}>
         {related.map((item, index) => (
           <ProductItemTwo
             key={index}
             id={item._id}
-            name={item.name}
+            image={item.image[0]}
+            name={item.name.slice(0, 20)}
             price={item.price}
-            image={item.image}
+            size={item.size}
+            classVisibility={classVisibility}
           />
         ))}
       </div>

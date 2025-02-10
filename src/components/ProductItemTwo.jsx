@@ -1,11 +1,3 @@
-// import React from "react";
-
-// const ProductItemTwo = () => {
-//   return <div>ProductItemTwo</div>;
-// };
-
-// export default ProductItemTwo;
-
 import React, { useContext, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { Link } from "react-router-dom";
@@ -13,7 +5,15 @@ import { IoLogInSharp } from "react-icons/io5";
 import { Plus } from "react-feather";
 import SizesModal from "./SizesModal";
 
-const ProductItemTwo = ({ id, image, name, price, size, classVisibility }) => {
+const ProductItemTwo = ({
+  id,
+  image,
+  name,
+  price,
+  size,
+  classVisibility,
+  lgClass,
+}) => {
   const [openModal, setOpenModal] = useState(false);
   console.log("openModal:", openModal);
   const { currency } = useContext(ShopContext);
@@ -34,7 +34,7 @@ const ProductItemTwo = ({ id, image, name, price, size, classVisibility }) => {
             />
           </Link>
 
-          <div className="absolute top-56 insert-0">
+          <div className="absolute top-56 insert-0 w-full">
             {openModal === true ? (
               <SizesModal
                 className="relative insert-0"
@@ -45,12 +45,16 @@ const ProductItemTwo = ({ id, image, name, price, size, classVisibility }) => {
               <></>
             )}
           </div>
-          <div className="absolute top-72 left-24 inset-0 w-8 h-8 rounded-full text-3xl font-semibold bg-black opacity-50">
+          <div
+            className={`absolute top-72 left-24 inset-0 w-8 h-8 rounded-full text-3xl font-semibold bg-black opacity-50 ${
+              openModal !== true ? "block" : "hidden"
+            }`}
+          >
             <button
               onClick={() => {
                 setOpenModal(true);
               }}
-              className="relative bottom-[6px] left-[5px] bg-black"
+              className="relative  bottom-[6px] left-[5px] bg-black"
             >
               <Plus color="brown" size={20} />
             </button>

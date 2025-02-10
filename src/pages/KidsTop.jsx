@@ -7,7 +7,7 @@ import { FaRegSquare } from "react-icons/fa";
 import { GoColumns } from "react-icons/go";
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
 
-const WomenTop = () => {
+const KidsTop = () => {
   const {
     subFilterProducts,
     className,
@@ -22,7 +22,7 @@ const WomenTop = () => {
     <div>
       <div className="relative top-40">
         <div className="text-center py-8 text-3xl">
-          <Title text1={"WOMEN"} text2={"TOP WEARS COLLECTIONS"} />
+          <Title text1={"KIDS"} text2={"TOP WEARS COLLECTIONS"} />
         </div>
         <div className="flex justify-end mr-4 mb-4">
           <FaRegSquare
@@ -65,4 +65,4 @@ const WomenTop = () => {
   );
 };
 
-export default WomenTop;
+export default KidsTop;

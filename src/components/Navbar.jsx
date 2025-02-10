@@ -53,80 +53,10 @@ const Navbar = () => {
           />
         </div>
 
-        {/* <div
-          className={`overflow-hidden  transition-all py-2 ${
-            visible
-              ? "w-full sm:w-[350px] border sm:border-black absolute top-20 left-0 sm:left-[100px] sm:top-2"
-              : "w-0"
-          }`}
-        >
-          <ul className="flex gap-4 mt-15 sm:mt-32 px-4 pt-8 pb-2 overflow-x-scroll">
-            <NavLink
-              onClick={() => targetRef1.current?.scrollIntoView()}
-              to="/women"
-              className="flex-shrink-0 items-center gap-1 cursor-pointer text-md"
-            >
-              WOMAN
-            </NavLink>
-            <NavLink
-              onClick={() => targetRef1.current?.scrollIntoView()}
-              to="/men"
-              className="flex-shrink-0 items-center gap-1 cursor-pointer text-md"
-            >
-              MAN
-            </NavLink>
-            <NavLink
-              onClick={() => targetRef1.current?.scrollIntoView()}
-              to="/kids"
-              className="flex-shrink-0 items-center gap-1 cursor-pointer text-md"
-            >
-              KIDS
-            </NavLink>
-            <NavLink
-              onClick={() => targetRef1.current?.scrollIntoView()}
-              to="/"
-              className="flex-shrink-0 items-center gap-1 cursor-pointer text-md"
-            >
-              HOME
-            </NavLink>
-            <NavLink
-              onClick={() => targetRef1.current?.scrollIntoView()}
-              to="/massimo-dutti"
-              className="flex-shrink-0 items-center gap-1 cursor-pointer text-md"
-            >
-              MASSIMO DUTTI
-            </NavLink>
-            <NavLink
-              to="/beauty"
-              className="iflex-shrink-0 items-center gap-1 cursor-pointer text-md"
-            >
-              BEAUTY
-            </NavLink>
-            <NavLink
-              ref={targetRef1}
-              to="/zara-pre-owned"
-              className="flex-shrink-0 items-center gap-1 cursor-pointer text-md"
-            >
-              ZARA PRE-OWNED
-            </NavLink>
-          </ul>
-          <hr className="h-[1px] border-none bg-black" />
-        </div>
-
-        <div className="flex flex-col mt-[-8px]">
-          <img
-            src={assets.logo_icon}
-            className={`w-[280px]  sm:w-[280px] ${
-              visible ? "hidden sm:block" : "block"
-            }`}
-            alt=""
-          />
-        </div> */}
-
         <div
-          className={`overflow-hidden  transition-all py-2  mt-[10px] sm:mt-[10px] bg-white text-black ${
+          className={`overflow-hidden  transition-all py-2  mt-[10px] sm:mt-[10px] text-black ${
             visible
-              ? "w-full md:w-[400px] sm:w-[300px] border sm:border-black absolute top-20 left-0 sm:left-[100px] sm:top-2"
+              ? "bg-white w-full md:w-[400px] sm:w-[300px] border sm:border-black absolute top-20 left-0 sm:left-[100px] sm:top-2"
               : ""
           }`}
         >
@@ -137,7 +67,7 @@ const Navbar = () => {
                   setShowCategoryFilter("HOME");
                 }}
                 src={assets.logo_icon}
-                className={`pl-6 w-[280px]  sm:w-[280px] cursor-pointer ${
+                className={`w-[100px]  sm:w-[180px] cursor-pointer ${
                   visible ? "hidden sm:block absolue left-0" : "w-full"
                 }`}
                 alt=""
@@ -148,8 +78,8 @@ const Navbar = () => {
             </p>
           </div>
           <ul
-            className={`flex gap-4 mt-15 sm:mt-[70px] px-4 pt-8 pb-2  overflow-x-scroll ${
-              visible ? "w-full sm:w-[350px]" : "hidden"
+            className={`flex gap-4 mt-15 sm:mt-[70px] px-4 pt-8 pb-2  overflow-x-scroll bg-transparent ${
+              visible ? "w-full sm:w-[350px] bg-white" : "hidden"
             }`}
           >
             <li
@@ -434,7 +364,7 @@ const Navbar = () => {
                 {/* Filter footer buttons */}
                 <div
                   className={`m-6 px-2 pt-2  text-black ${
-                    visible && firstCategoryPathName === "Women"
+                    visible && showCategoryFilter === "WOMAN"
                       ? "block"
                       : "hidden"
                   }`}
@@ -461,54 +391,9 @@ const Navbar = () => {
 
               {/* men filter */}
               <div className="mens-filter-container">
-                {/* sales filter */}
-                <div
-                  className={`m-6 px-2 pt-2  bg-green-400 text-black ${
-                    visible && showCategoryFilter === "MAN" ? "block" : "hidden"
-                  }`}
-                >
-                  <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
-                    <p onClick={() => setShowSalesfilter(true)}>SALE</p>
-                    <PlusCircle
-                      onClick={() => setShowSalesfilter(true)}
-                      color="red"
-                      className={` ${showSalesfilter ? "hidden" : "block"}`}
-                    />
-                    <MinusCircle
-                      onClick={() => setShowSalesfilter(false)}
-                      color="red"
-                      className={` ${showSalesfilter ? "block" : "hidden"}`}
-                    />
-                  </div>
-                  <ul
-                    className={`flex flex-col text-[12px] ${
-                      showSalesfilter ? "block" : "hidden"
-                    }`}
-                  >
-                    <Link className="border-b-2 border-red-800 pb-1 mb-2">
-                      FROM 60% OFF
-                    </Link>
-                    <Link className="border-b-2 border-red-800 pb-1 mb-2">
-                      VIEW ALL
-                    </Link>
-                    <Link className="border-b-2 border-red-800 pb-1 mb-2">
-                      NEW ITEMS
-                    </Link>
-                    <Link className="border-b-2 border-red-800 pb-1 mb-2">
-                      SHIRTS
-                    </Link>
-                    <Link className="border-b-2 border-red-800 pb-1 mb-2">
-                      CARDIGANS/SWEATERS
-                    </Link>
-                    <Link className="border-b-2 border-red-800 pb-1 mb-2">
-                      T-SHIRTS
-                    </Link>
-                  </ul>
-                </div>
-
                 {/* New Collections filter */}
                 <div
-                  className={`m-6 px-2 pt-2  bg-red-800 text-black ${
+                  className={`m-6 px-2 pt-2  bg-pink-500 text-black ${
                     visible && showCategoryFilter === "MAN" ? "block" : "hidden"
                   }`}
                 >
@@ -518,7 +403,11 @@ const Navbar = () => {
                     }`}
                   >
                     <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
-                      <p onClick={() => setShowCollectionsfilter(true)}>
+                      <p
+                        onClick={() => {
+                          setShowCollectionsfilter(true);
+                        }}
+                      >
                         NEW COLLECTIONS
                       </p>
                       <PlusCircle
@@ -541,25 +430,141 @@ const Navbar = () => {
                         showCollectionsfilter ? "block" : "hidden"
                       }`}
                     >
-                      <Link className="border-b-2 border-green-400 pb-1 mb-2">
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                          setShowCategoryFilter("MAN");
+                          // setFirstCategoryPathName("men");
+                        }}
+                        to="/Men/view_all_new"
+                        className="border-b-2 border-green-400 pb-1 mb-2"
+                      >
                         /// NEW
                       </Link>
-                      <Link className="border-b-2 border-green-400 mb-2">
-                        VIEW ALL
-                      </Link>
-                      <Link className="border-b-2 border-green-400 pb-1 mb-2">
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                          setFilter("Topwear");
+                        }}
+                        to="/Men/Topwear"
+                        className="border-b-2 border-green-400 pb-1 mb-2"
+                      >
                         TOP
                       </Link>
-                      <Link className="border-b-2 border-green-400 pb-1 mb-2">
+                      <Link
+                        to="/Men/Bottomwear"
+                        onClick={() => {
+                          setVisible(false);
+                          setFilter("Bottomwear");
+                        }}
+                        className="border-b-2 border-green-400 pb-1 mb-2"
+                      >
                         BOTTOM
                       </Link>
-                      <Link className="border-b-2 border-green-400 pb-1 mb-2">
+                      <Link
+                        to="/Men/Winterwear"
+                        onClick={() => {
+                          setVisible(false);
+                          setFilter("Winterwear");
+                        }}
+                        className="border-b-2 border-green-400 pb-1 mb-2"
+                      >
                         WINTER
+                      </Link>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                          setFilter("Tops/Bodysuits");
+                        }}
+                        className="border-b-2 border-green-400 mb-2"
+                      >
+                        TOPS/BODYSUITS
                       </Link>
 
                       <button className="border border-black pb-1 mt-5 mb-2 w-[80px]">
                         <Link className="">GIFT CARD</Link>
                       </button>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* sales filter */}
+                <div
+                  className={`m-6 px-2 pt-2  bg-green-400 text-black ${
+                    visible && showCategoryFilter === "MAN" ? "block" : "hidden"
+                  }`}
+                >
+                  <div
+                    className={`${
+                      showCategoryFilter === "MAN" ? "block" : "hidden"
+                    }`}
+                  >
+                    <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
+                      <p onClick={() => setShowSalesfilter(true)}>SALE</p>
+                      <PlusCircle
+                        onClick={() => setShowSalesfilter(true)}
+                        color="red"
+                        className={` ${showSalesfilter ? "hidden" : "block"}`}
+                      />
+                      <MinusCircle
+                        onClick={() => setShowSalesfilter(false)}
+                        color="red"
+                        className={` ${showSalesfilter ? "block" : "hidden"}`}
+                      />
+                    </div>
+                    <ul
+                      className={`flex flex-col text-[12px] ${
+                        showSalesfilter ? "block" : "hidden"
+                      }`}
+                    >
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
+                        OUTERWEAR
+                      </Link>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
+                        DRESSES
+                      </Link>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
+                        BLAZERS/VESTS
+                      </Link>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
+                        CARDIGANS/SWEATERS
+                      </Link>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
+                        TOPS/BODYSUITS
+                      </Link>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
+                        SHIRTS/BLOUSES
+                      </Link>
                     </ul>
                   </div>
                 </div>
@@ -592,81 +597,25 @@ const Navbar = () => {
 
               {/* Kids filter */}
               <div className="kids-filter-container">
-                {/* sales filter */}
-                <div
-                  className={`m-6 px-2 pt-2  bg-green-400 text-black ${
-                    visible && firstCategoryPathName === "KIDS"
-                      ? "block"
-                      : "hidden"
-                  }`}
-                >
-                  <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
-                    <p onClick={() => setShowSalesfilter(true)}>SALE</p>
-                    <PlusCircle
-                      onClick={() => setShowSalesfilter(true)}
-                      color="red"
-                      className={` ${showSalesfilter ? "hidden" : "block"}`}
-                    />
-                    <MinusCircle
-                      onClick={() => setShowSalesfilter(false)}
-                      color="red"
-                      className={` ${showSalesfilter ? "block" : "hidden"}`}
-                    />
-                  </div>
-
-                  <ul
-                    className={`flex flex-col text-[12px] justify-start ${
-                      showSalesfilter ? "block" : "hidden"
-                    }`}
-                  >
-                    <p className="start font-bold border-b-2 border-red-800 pb-1 mb-2">
-                      GIRL
-                    </p>
-                    <Link className="border-b-2 border-red-800 pb-1 mb-2">
-                      1 - 6 YEARS
-                    </Link>
-                    <Link className="border-b-2 border-red-800 pb-1 mb-2">
-                      6 - 14 YEARS
-                    </Link>
-                    <Link className="border-b-2 border-red-800 pb-1 mb-2">
-                      Z3D 14+ YEARS
-                    </Link>
-                    <p className="start font-bold border-b-2 border-red-800 pb-1 mb-2 mt-5">
-                      BOY
-                    </p>
-                    <Link className="border-b-2 border-red-800 pb-1 mb-2">
-                      1 - 6 YEARS
-                    </Link>
-                    <Link className="border-b-2 border-red-800 pb-1 mb-2">
-                      6 - 14 YEARS
-                    </Link>
-                    <p className="start font-bold border-b-2 border-red-800 pb-1 mb-2 mt-5">
-                      BABY
-                    </p>
-                    <Link className="border-b-2 border-red-800 pb-1 mb-2">
-                      0 - 6 MONTHS
-                    </Link>
-                    <Link className="border-b-2 border-red-800 pb-1 mb-2">
-                      6 - 18 MONTHS
-                    </Link>
-                  </ul>
-                </div>
-
                 {/* New Collections filter */}
                 <div
-                  className={`m-6 px-2 pt-2  bg-red-800 text-black ${
-                    visible && firstCategoryPathName === "KIDS"
+                  className={`m-6 px-2 pt-2  bg-pink-500 text-black ${
+                    visible && showCategoryFilter === "KIDS"
                       ? "block"
                       : "hidden"
                   }`}
                 >
                   <div
                     className={`${
-                      firstCategoryPathName === "KIDS" ? "block" : "hidden"
+                      showCategoryFilter === "KIDS" ? "block" : "hidden"
                     }`}
                   >
                     <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
-                      <p onClick={() => setShowCollectionsfilter(true)}>
+                      <p
+                        onClick={() => {
+                          setShowCollectionsfilter(true);
+                        }}
+                      >
                         NEW COLLECTIONS
                       </p>
                       <PlusCircle
@@ -689,20 +638,55 @@ const Navbar = () => {
                         showCollectionsfilter ? "block" : "hidden"
                       }`}
                     >
-                      <Link className="border-b-2 border-green-400 pb-1 mb-2">
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                          setShowCategoryFilter("KIDS");
+                          // setFirstCategoryPathName("kid");
+                        }}
+                        to="/Kids/view_all_new"
+                        className="border-b-2 border-green-400 pb-1 mb-2"
+                      >
                         /// NEW
                       </Link>
-                      <Link className="border-b-2 border-green-400 mb-2">
-                        VIEW ALL
-                      </Link>
-                      <Link className="border-b-2 border-green-400 pb-1 mb-2">
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                          setFilter("Topwear");
+                        }}
+                        to="/Kids/Topwear"
+                        className="border-b-2 border-green-400 pb-1 mb-2"
+                      >
                         TOP
                       </Link>
-                      <Link className="border-b-2 border-green-400 pb-1 mb-2">
+                      <Link
+                        to="/Kids/Bottomwear"
+                        onClick={() => {
+                          setVisible(false);
+                          setFilter("Bottomwear");
+                        }}
+                        className="border-b-2 border-green-400 pb-1 mb-2"
+                      >
                         BOTTOM
                       </Link>
-                      <Link className="border-b-2 border-green-400 pb-1 mb-2">
+                      <Link
+                        to="/Kids/Winterwear"
+                        onClick={() => {
+                          setVisible(false);
+                          setFilter("Winterwear");
+                        }}
+                        className="border-b-2 border-green-400 pb-1 mb-2"
+                      >
                         WINTER
+                      </Link>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                          setFilter("Tops/Bodysuits");
+                        }}
+                        className="border-b-2 border-green-400 mb-2"
+                      >
+                        TOPS/BODYSUITS
                       </Link>
 
                       <button className="border border-black pb-1 mt-5 mb-2 w-[80px]">
@@ -712,10 +696,93 @@ const Navbar = () => {
                   </div>
                 </div>
 
+                {/* sales filter */}
+                <div
+                  className={`m-6 px-2 pt-2  bg-green-400 text-black ${
+                    visible && showCategoryFilter === "KIDS"
+                      ? "block"
+                      : "hidden"
+                  }`}
+                >
+                  <div
+                    className={`${
+                      showCategoryFilter === "KIDS" ? "block" : "hidden"
+                    }`}
+                  >
+                    <div className="flex justify-between font-bold mb-7 cursor-pointer pb-2">
+                      <p onClick={() => setShowSalesfilter(true)}>SALE</p>
+                      <PlusCircle
+                        onClick={() => setShowSalesfilter(true)}
+                        color="red"
+                        className={` ${showSalesfilter ? "hidden" : "block"}`}
+                      />
+                      <MinusCircle
+                        onClick={() => setShowSalesfilter(false)}
+                        color="red"
+                        className={` ${showSalesfilter ? "block" : "hidden"}`}
+                      />
+                    </div>
+                    <ul
+                      className={`flex flex-col text-[12px] ${
+                        showSalesfilter ? "block" : "hidden"
+                      }`}
+                    >
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
+                        OUTERWEAR
+                      </Link>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
+                        DRESSES
+                      </Link>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
+                        BLAZERS/VESTS
+                      </Link>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
+                        CARDIGANS/SWEATERS
+                      </Link>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
+                        TOPS/BODYSUITS
+                      </Link>
+                      <Link
+                        onClick={() => {
+                          setVisible(false);
+                        }}
+                        className="border-b-2 border-red-800 pb-1 mb-2"
+                      >
+                        SHIRTS/BLOUSES
+                      </Link>
+                    </ul>
+                  </div>
+                </div>
+
                 {/* Filter footer buttons */}
                 <div
                   className={`m-6 px-2 pt-2  text-black ${
-                    visible && firstCategoryPathName === "KIDS"
+                    visible && showCategoryFilter === "KIDS"
                       ? "block"
                       : "hidden"
                   }`}
