@@ -54,9 +54,9 @@ const Navbar = () => {
         </div>
 
         <div
-          className={`overflow-hidden  transition-all py-2  mt-[10px] sm:mt-[10px] bg-white text-black ${
+          className={`overflow-hidden  transition-all py-2  mt-[10px] sm:mt-[10px] text-black ${
             visible
-              ? "w-full md:w-[400px] sm:w-[300px] border sm:border-black absolute top-20 left-0 sm:left-[100px] sm:top-2"
+              ? "bg-white w-full md:w-[400px] sm:w-[300px] border sm:border-black absolute top-20 left-0 sm:left-[100px] sm:top-2"
               : ""
           }`}
         >
@@ -67,7 +67,7 @@ const Navbar = () => {
                   setShowCategoryFilter("HOME");
                 }}
                 src={assets.logo_icon}
-                className={`pl-6 w-[280px]  sm:w-[280px] cursor-pointer ${
+                className={`w-[100px]  sm:w-[180px] cursor-pointer ${
                   visible ? "hidden sm:block absolue left-0" : "w-full"
                 }`}
                 alt=""
@@ -78,8 +78,8 @@ const Navbar = () => {
             </p>
           </div>
           <ul
-            className={`flex gap-4 mt-15 sm:mt-[70px] px-4 pt-8 pb-2  overflow-x-scroll ${
-              visible ? "w-full sm:w-[350px]" : "hidden"
+            className={`flex gap-4 mt-15 sm:mt-[70px] px-4 pt-8 pb-2  overflow-x-scroll bg-transparent ${
+              visible ? "w-full sm:w-[350px] bg-white" : "hidden"
             }`}
           >
             <li

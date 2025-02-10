@@ -46,7 +46,7 @@ const KidsNew = () => {
           <ProductItem
             key={index}
             id={item._id}
-            image={item.image[0]}
+            image={item.image}
             name={item.name.slice(0, 20)}
             price={item.price}
             classVisibility={classVisibility}
