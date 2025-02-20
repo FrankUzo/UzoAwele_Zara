@@ -5,8 +5,14 @@ import Title from "../components/Title";
 import { ImBin } from "react-icons/im";
 
 const Cart = () => {
-  const { products, currency, cartItems, updateQuantity, showSearch } =
-    useContext(ShopContext);
+  const {
+    products,
+    currency,
+    cartItems,
+    updateQuantity,
+    showSearch,
+    getCartCount,
+  } = useContext(ShopContext);
   console.log("Cart cartItems:", cartItems);
   console.log("Cart showSearch:", showSearch);
   const [cartData, setCartData] = useState([]);
@@ -35,6 +41,12 @@ const Cart = () => {
     >
       <div className="text-center pt-3 sm:pt-8 pb-2 text-2xl sm:text-3xl">
         <Title text1={"YOUR"} text2={"CART"} />
+      </div>
+
+      <div>
+        <p className="text-[11px] font-medium text-gray-800">
+          SHOPPING BAG [{getCartCount()}]
+        </p>
       </div>
 
       <div className="flex flex-col md:grid grid-cols-[1fr_1fr_1fr] gap-5 gap-y-12 my-10">
