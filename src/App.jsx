@@ -1,4 +1,4 @@
-import React from "react";
+import { React } from "react";
 import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
@@ -17,11 +17,18 @@ import KidsNew from "./pages/KidsNew";
 import KidsTop from "./pages/KidsTop";
 import KidsBottom from "./pages/KidsBottom";
 import KidsWinter from "./pages/KidsWinter";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import SearchBar from "./components/SearchBar";
+import AddToCartBtn from "./components/AddToCartBtn";
+import Cart from "./pages/Cart";
 
 const App = () => {
   return (
     <div className="min-h-screen w-screen object-cover">
+      <ToastContainer />
       <Navbar />
+      <SearchBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Women/view_all_new" element={<WomenNew />} />
@@ -38,8 +45,10 @@ const App = () => {
         <Route path="/Kids/Winterwear" element={<KidsWinter />} />
         <Route path="/login_rigister" element={<LoginRegiter />} />
         <Route path="/product/:productId" element={<ProductDetail />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <FooterGeneral className="mt-72" />
+      <AddToCartBtn />
     </div>
   );
 };

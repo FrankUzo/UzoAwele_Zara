@@ -92,6 +92,7 @@ import p_img67 from "./p_img67.avif";
 import p_img68 from "./p_img68.avif";
 import p_img69 from "./p_img69.avif";
 import p_img70 from "./p_img70.avif";
+import { IoGameControllerOutline } from "react-icons/io5";
 
 export const assets = {
   logo_icon,
@@ -133,6 +134,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["WHITE", "BLUE", "BLACK", "RED", "GREEN"],
   },
   {
     _id: "aaaab",
@@ -146,6 +148,7 @@ export const products = [
     size: ["M", "L", "XL"],
     date: 1716621345448,
     bestSeller: false,
+    color: ["PINK", "PURPLE", "BLACK", "RED", "GREEN"],
   },
   {
     _id: "aaaac",
@@ -159,6 +162,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["WHITE", "BLUE", "ORANGE", "WINE", "GRAY"],
   },
   {
     _id: "aaaad",
@@ -172,6 +176,7 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["YELLOW", "BROWN", "AZURE", "LIGHT - GREEN", "LIME"],
   },
   {
     _id: "aaaae",
@@ -185,6 +190,7 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["WHEAT", "GOLDEN", "SALMON", "CHOCOLATE", "BRONZE"],
   },
   {
     _id: "aaaaf",
@@ -198,6 +204,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["SPRING - GREEN", "DARK - BLUE", "TURQUOISE", "AQUA", "CRIMSON"],
   },
   {
     _id: "aaaag",
@@ -211,6 +218,7 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["SILVER", "DARK - RED", "NAVY", "ORCHID", "TEAL"],
   },
   {
     _id: "aaaah",
@@ -224,6 +232,7 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["WHITE", "BLUE", "NAVY", "ORCHID", "GRAY"],
   },
   {
     _id: "aaaai",
@@ -237,6 +246,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["WHITE", "LEMON", "BROWN", "GREEN", "YELLOW"],
   },
   {
     _id: "aaaaj",
@@ -250,6 +260,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["WHITE", "LEMON - GREEEN", "WINE", "BLUE", "YELLOW"],
   },
 
   {
@@ -264,6 +275,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["WHITE", "LEMON - GREEEN", "WINE", "BLUE", "YELLOW"],
   },
   {
     _id: "aaaal",
@@ -277,6 +289,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["WHITE", "LEMON - GREEEN", "WINE", "BLUE", "YELLOW"],
   },
   {
     _id: "aaaam",
@@ -290,6 +303,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["AQUA", "TURQUOISE", "MAROON", "LIME", "SALMON"],
   },
   {
     _id: "aaaan",
@@ -303,6 +317,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["AQUA", "TURQUOISE", "MAROON", "LIME", "SALMON"],
   },
   {
     _id: "aaaao",
@@ -316,6 +331,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["AQUA", "TURQUOISE", "MAROON", "LIME", "SALMON"],
   },
 
   {
@@ -330,6 +346,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["PURPLE", "GRAY", "WHEAT", "SILVER", "DARK - BLUE"],
   },
   {
     _id: "aaaaq",
@@ -343,6 +360,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["PURPLE", "GRAY", "WHEAT", "SILVER", "DARK - BLUE"],
   },
   {
     _id: "aaaar",
@@ -356,6 +374,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["PURPLE", "GRAY", "WHEAT", "SILVER", "DARK - BLUE"],
   },
   {
     _id: "aaaas",
@@ -369,6 +388,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["DARK - RED", "SPRING - GREEN", "GOLDEN", "BLACK", "AZURE"],
   },
   {
     _id: "aaaat",
@@ -382,6 +402,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["DARK - RED", "SPRING - GREEN", "GOLDEN", "BLACK", "AZURE"],
   },
   {
     _id: "aaaau",
@@ -395,6 +416,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["DARK - RED", "SPRING - GREEN", "GOLDEN", "BLACK", "AZURE"],
   },
   {
     _id: "aaaav",
@@ -408,6 +430,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["DARK - RED", "SPRING - GREEN", "GOLDEN", "BLACK", "AZURE"],
   },
   {
     _id: "aaaaw",
@@ -421,6 +444,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["SALMON", "LIGHT - GREEN", "WHITE", "NAVY", "PINK"],
   },
 
   {
@@ -435,6 +459,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["SALMON", "LIGHT - GREEN", "WHITE", "NAVY", "PINK"],
   },
   {
     _id: "aaaay",
@@ -448,6 +473,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["SALMON", "LIGHT - GREEN", "WHITE", "NAVY", "PINK"],
   },
   {
     _id: "aaaaz",
@@ -461,6 +487,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["SALMON", "LIGHT - GREEN", "WHITE", "NAVY", "PINK"],
   },
   {
     _id: "aaabz",
@@ -474,6 +501,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["MAROON", "GREEN", "YELLOW", "CHOCOLATE", "ORCHID"],
   },
   {
     _id: "aaacz",
@@ -487,6 +515,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["MAROON", "GREEN", "YELLOW", "CHOCOLATE", "ORCHID"],
   },
   {
     _id: "aaadz",
@@ -500,6 +529,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["MAROON", "GREEN", "YELLOW", "CHOCOLATE", "ORCHID"],
   },
 
   {
@@ -514,6 +544,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["MAROON", "GREEN", "YELLOW", "CHOCOLATE", "ORCHID"],
   },
   {
     _id: "aaafz",
@@ -527,6 +558,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["MAROON", "AQUA", "TURQUOISE", "RED", "BROWN"],
   },
   {
     _id: "aaaiz",
@@ -540,6 +572,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["MAROON", "AQUA", "TURQUOISE", "RED", "BROWN"],
   },
   {
     _id: "aaajz",
@@ -553,6 +586,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["MAROON", "AQUA", "TURQUOISE", "RED", "BROWN"],
   },
   {
     _id: "aaakz",
@@ -566,6 +600,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["MAROON", "AQUA", "TURQUOISE", "RED", "BROWN"],
   },
   {
     _id: "aaalz",
@@ -579,6 +614,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["TEAL", "CRIMSON", "BRONZE", "LIME", "SILVER"],
   },
   {
     _id: "aaamz",
@@ -592,6 +628,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["TEAL", "CRIMSON", "BRONZE", "LIME", "SILVER"],
   },
   {
     _id: "aaanz",
@@ -605,6 +642,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["TEAL", "CRIMSON", "BRONZE", "LIME", "SILVER"],
   },
   {
     _id: "aaaoz",
@@ -618,6 +656,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["GOLDEN", "CRIMSON", "SALMON", "CHOCOLATE", "BRONZE"],
   },
 
   {
@@ -632,6 +671,7 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["GOLDEN", "CRIMSON", "SALMON", "CHOCOLATE", "BRONZE"],
   },
   {
     _id: "aaaqz",
@@ -645,6 +685,7 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["GOLDEN", "CRIMSON", "SALMON", "CHOCOLATE", "BRONZE"],
   },
   {
     _id: "aaarz",
@@ -658,6 +699,7 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["OLIVE", "VIOLATE", "CORAL", "CREAMSON", "MUSTARD"],
   },
   {
     _id: "aaasz",
@@ -671,6 +713,7 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: true,
+    color: ["OLIVE", "VIOLATE", "CORAL", "CREAMSON", "MUSTARD"],
   },
 
   {
@@ -685,6 +728,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["OLIVE", "VIOLATE", "CORAL", "CREAMSON", "MUSTARD"],
   },
   {
     _id: "aaauz",
@@ -698,6 +742,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["OLIVE", "VIOLATE", "CORAL", "CREAMSON", "MUSTARD"],
   },
   {
     _id: "aaavz",
@@ -711,6 +756,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["INDIGO", "PEACH", "PLUME", "LILAC", "AQUA"],
   },
   {
     _id: "aaawz",
@@ -724,6 +770,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["INDIGO", "PEACH", "PLUME", "LILAC", "AQUA"],
   },
 
   {
@@ -738,6 +785,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["INDIGO", "PEACH", "PLUME", "LILAC", "AQUA"],
   },
   {
     _id: "aaayz",
@@ -751,6 +799,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["INDIGO", "PEACH", "PLUME", "LILAC", "AQUA"],
   },
   {
     _id: "aaazz",
@@ -764,6 +813,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["LAVENDER", "TEAL", "MAUVE", "LILAC", "MAROON"],
   },
   {
     _id: "aabzz",
@@ -777,6 +827,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["LAVENDER", "TEAL", "MAUVE", "LILAC", "MAROON"],
   },
   {
     _id: "aaczz",
@@ -790,6 +841,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["LAVENDER", "TEAL", "MAUVE", "LILAC", "MAROON"],
   },
   {
     _id: "aadzz",
@@ -803,6 +855,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    ccolor: ["LAVENDER", "TEAL", "MAUVE", "LILAC", "MAROON"],
   },
   {
     _id: "aaezz",
@@ -816,6 +869,7 @@ export const products = [
     size: ["S", "M", "L"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["GRAY", "TEAL", "SEA - GREEN", "DEEP - PURPLE", "PEACH"],
   },
 
   {
@@ -830,6 +884,7 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["GRAY", "TEAL", "SEA - GREEN", "DEEP - PURPLE", "PEACH"],
   },
   {
     _id: "aagzz",
@@ -843,6 +898,7 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["GRAY", "TEAL", "SEA - GREEN", "DEEP - PURPLE", "PEACH"],
   },
   {
     _id: "aahzz",
@@ -856,6 +912,7 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["GRAY", "TEAL", "SEA - GREEN", "DEEP - PURPLE", "PEACH"],
   },
   {
     _id: "aaizz",
@@ -869,6 +926,13 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: [
+      "DOVE - GRAY",
+      "STEAL - GRAY",
+      "SMOKEY - GRAY",
+      "DEEP - PURPLE",
+      "SILVER",
+    ],
   },
   {
     _id: "aajzz",
@@ -882,6 +946,13 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: [
+      "DOVE - GRAY",
+      "STEAL - GRAY",
+      "SMOKEY - GRAY",
+      "DEEP - PURPLE",
+      "SILVER",
+    ],
   },
   {
     _id: "aakzz",
@@ -895,6 +966,13 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: [
+      "DOVE - GRAY",
+      "STEAL - GRAY",
+      "SMOKEY - GRAY",
+      "DEEP - PURPLE",
+      "SILVER",
+    ],
   },
   {
     _id: "aalzz",
@@ -908,6 +986,13 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: [
+      "DOVE - GRAY",
+      "STEAL - GRAY",
+      "SMOKEY - GRAY",
+      "DEEP - PURPLE",
+      "SILVER",
+    ],
   },
   {
     _id: "aamzz",
@@ -921,6 +1006,13 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: [
+      "SKY - BLUE",
+      "FRENCH - NAVY",
+      "NAVY - BLUE",
+      "BLUE - BELL",
+      "PERIWINKLE",
+    ],
   },
   {
     _id: "aanzz",
@@ -934,6 +1026,13 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: [
+      "SKY - BLUE",
+      "FRENCH - NAVY",
+      "NAVY - BLUE",
+      "BLUE - BELL",
+      "PERIWINKLE",
+    ],
   },
 
   {
@@ -948,6 +1047,13 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: [
+      "SKY - BLUE",
+      "FRENCH - NAVY",
+      "NAVY - BLUE",
+      "BLUE - BELL",
+      "PERIWINKLE",
+    ],
   },
   {
     _id: "aapzz",
@@ -961,6 +1067,13 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: [
+      "EMELRALD",
+      "LAWN - GREEN",
+      "APPLE - GREEN",
+      "FOREST - GREEN",
+      "SAGE - GREEN",
+    ],
   },
   {
     _id: "aaqzz",
@@ -974,6 +1087,13 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: [
+      "EMELRALD",
+      "LAWN - GREEN",
+      "APPLE - GREEN",
+      "FOREST - GREEN",
+      "SAGE - GREEN",
+    ],
   },
   {
     _id: "aarzz",
@@ -987,6 +1107,13 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: [
+      "EMELRALD",
+      "LAWN - GREEN",
+      "APPLE - GREEN",
+      "FOREST - GREEN",
+      "SAGE - GREEN",
+    ],
   },
   {
     _id: "aaszz",
@@ -1000,6 +1127,7 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["CAPRI", "AQUAMARINE", "AQUA - BLUE", "ALBASTER", "IVORY"],
   },
   {
     _id: "aatzz",
@@ -1013,6 +1141,7 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["CAPRI", "AQUAMARINE", "AQUA - BLUE", "ALBASTER", "IVORY"],
   },
   {
     _id: "aauzz",
@@ -1026,6 +1155,7 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["CAPRI", "AQUAMARINE", "AQUA - BLUE", "ALBASTER", "IVORY"],
   },
   {
     _id: "aavzz",
@@ -1039,5 +1169,6 @@ export const products = [
     size: ["S", "M", "L", "XL"],
     date: 1716634345448,
     bestSeller: false,
+    color: ["CAPRI", "AQUAMARINE", "MUSHROOM", "CHAMPAGN", "ROSE - BEIGE"],
   },
 ];

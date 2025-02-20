@@ -4,13 +4,20 @@ import { ShopContext } from "../context/ShopContext";
 import { IoLogInSharp } from "react-icons/io5";
 import { MdOutlineStar } from "react-icons/md";
 import RelatedProducts from "../components/RelatedProducts";
+import AddToCartOffcanvas from "../components/AddToCartOffcanvas";
+import ModalOffCanvas from "../components/ModalOffCanvas";
 
 const ProductDetail = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
   const { productId } = useParams();
-  const { products, currency } = useContext(ShopContext);
+  const { products, currency, addToCart, showSearch, cartItems } =
+    useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
+  const [showSize, setShowSize] = useState(false);
+  const [showCompleteOrderBtn, setShowCompleteOrderBtn] = useState(false);
 
   const fetchProductData = async () => {
     products.map((item) => {
@@ -28,7 +35,11 @@ const ProductDetail = () => {
   }, [productId, products]);
 
   return productData ? (
-    <div className="border-t-2 pt-10 px-0 sm:px-16 mt-10 sm:mt-48 transition-opacity ease-in duration-500 opacity-100">
+    <div
+      className={`border-t-2 pt-10 px-5 sm:px-16 transition-opacity ease-in duration-500 opacity-100 ${
+        showSearch ? " mt-0" : "mt-24 sm:mt-48"
+      }`}
+    >
       {/* ---------------------- Product Data ----------------- */}
       <div className="flex gap-0 xl:gap-12 flex-col sm:flex-row">
         {/* --------------- Description & Review Section ------------------ */}
@@ -42,6 +53,7 @@ const ProductDetail = () => {
                 Reviews (122)
               </p>
             </div>
+            <hr />
             <p>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem
               voluptatibus doloribus laboriosam necessitatibus officiis eveniet.
@@ -50,7 +62,7 @@ const ProductDetail = () => {
         </div>
         {/* ----------- Product Images ----------------- */}
         <div className=" flex flex-col-reverse md:gap-3 sm:flex-row w-full md:w-[500px] justify-center flex-shrink-0">
-          <div className="w-full sm:w-[70%]">
+          <div className="w-full md:w-[70%]">
             <img className="w-full h-auto" src={image} alt="" />
           </div>
           <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-scroll relative left-7 mb-4 sm:mb-0 w-80 sm:w-8 gap-4 sm:gap-0">
@@ -66,7 +78,7 @@ const ProductDetail = () => {
           </div>
         </div>
         {/* ----------- Product Info ---------- */}
-        <div className="hidden md:block border border-black px-5 w-80">
+        <div className="hidden sm:block border border-black px-5 w-96">
           <div className="flex items-center justify-between">
             <h1 className="font-medium text-l mt-2">{productData.name}</h1>
             <Link to="/login_rigister" className="cursor-pointer">
@@ -86,6 +98,7 @@ const ProductDetail = () => {
             {currency}
             {productData.price}
           </p>
+          <hr className="h-[2px] bg-black my-6" />
           <div className="my-5 text-gray-500 md:w-4/5">
             {productData.description}
             <div>
@@ -94,12 +107,44 @@ const ProductDetail = () => {
               </b>
             </div>
           </div>
-          <div className="flex flex-col gap-4 my--8">
-            <p>Select Size</p>
-            <div className="flex gap-2">
+
+          <button
+            onClick={() => {
+              setShowSize(true);
+            }}
+            className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700 mt-6 w-full"
+          >
+            ADD TO CART
+          </button>
+
+          <button
+            onClick={() => {
+              setShowCompleteOrderBtn(true);
+            }}
+            className={`bg-white text-black border border-black px-8 py-3 text-sm active:bg-gray-700 mt-6 w-full  ${
+              showCompleteOrderBtn ? "block" : "hidden"
+            }`}
+          >
+            <Link to="/cart">COMPLETE ORDER</Link>
+          </button>
+          <div
+            className={`flex flex-col gap-4 my-8 bg-slate-100 py-5 px-4 rounded-md  ${
+              showSize ? "block" : "hidden"
+            }`}
+          >
+            <p className="text-center text-xl font-bold text-gray-500">
+              Select Size
+            </p>
+            <div className="flex gap-2 justify-center">
               {productData.size.map((item, index) => (
                 <button
-                  onClick={() => setSize(item)}
+                  onClick={() => {
+                    addToCart(productData._id, size);
+                    setSize(item);
+                    setIsOpen2(true);
+                    setShowSize(false);
+                    setShowCompleteOrderBtn(true);
+                  }}
                   className={`border py-2 px-4 bg-gray-100 ${
                     item === size ? "border-orange-500 active:bg-slate-300" : ""
                   }`}
@@ -109,13 +154,18 @@ const ProductDetail = () => {
                 </button>
               ))}
             </div>
+            <div className="flex justify-between mt-7">
+              <p
+                onClick={() => setIsOpen(true)}
+                className="py-2 px-2 text-[12px] bg-gray-500 text-white rounded active:bg-slate-400 active:text-black hover:bg-gray-700 cursor-pointer"
+              >
+                Fit Finder
+              </p>
+              <p className="py-2 px-2 text-[12px] bg-gray-500 text-white rounded active:bg-slate-400 active:text-black hover:bg-gray-700 cursor-pointer">
+                Product Measurements
+              </p>
+            </div>
           </div>
-          <button
-            onClick={() => addToCart(productData._id, size)}
-            className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700 mt-6"
-          >
-            ADD TO CART
-          </button>
           <hr className="mt-8 sm:w-4/5" />
           <div className="text-sm text-gray-500 mt-5 flex flex-col gap-1">
             <p>100% Original produt.</p>
@@ -123,7 +173,7 @@ const ProductDetail = () => {
             <p>Easy return and exchange policy within 7days.</p>
           </div>
         </div>
-        <div className="block md:hidden py-5 px-5 w-80">
+        <div className="block sm:hidden py-5 px-5 w-80">
           <div className="flex flex-col">
             <h1 className="font-medium text-l mt-2">{productData.name}</h1>
             <p className="text-sm text-gray-600 font-medium">
@@ -131,22 +181,14 @@ const ProductDetail = () => {
               {productData.price}
             </p>
           </div>
-          <div className="flex items-center justify-between">
-            <div className="mr-6">
-              <button
-                onClick={() => addToCart(productData._id, size)}
-                className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700 mt-6 w-64 "
-              >
-                ADD TO CART
-              </button>
-            </div>
-            <div className="cursor-pointer border border-black p-2 w-12 mt-6">
-              <Link to="/login_rigister">
-                <IoLogInSharp size={25} />
-              </Link>
-            </div>
-          </div>
         </div>
+        <AddToCartOffcanvas
+          isOpen2={isOpen2}
+          setIsOpen2={setIsOpen2}
+          productData={productData}
+          size={size}
+        />
+        <ModalOffCanvas isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
 
       {/* --------------- Display Related Products */}

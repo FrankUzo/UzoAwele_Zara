@@ -11,6 +11,7 @@ import {
   Search,
 } from "react-feather";
 import { ShopContext } from "../context/ShopContext";
+import SearchBar from "./SearchBar";
 // import Carousel from "./Carousel";
 
 const Navbar = () => {
@@ -24,9 +25,11 @@ const Navbar = () => {
 
   const {
     firstCategoryPathName,
+    setShowSearch,
     // secondCategoryPathName,
     // setFirstCategoryPathName,
     // setSecondCategoryPathName,
+    getCartCount,
   } = useContext(ShopContext);
 
   return (
@@ -67,7 +70,7 @@ const Navbar = () => {
                   setShowCategoryFilter("HOME");
                 }}
                 src={assets.logo_icon}
-                className={`w-[100px]  sm:w-[180px] cursor-pointer ${
+                className={`w-[70px] sm:w-[180px] cursor-pointer ${
                   visible ? "hidden sm:block absolue left-0" : "w-full"
                 }`}
                 alt=""
@@ -962,20 +965,20 @@ const Navbar = () => {
 
         <div className="p-[0px] sm:p-[60px] md:p-[120px] lg:p-[180px] "></div>
 
-        {/* <button className="w-1/4 px-5 mt-8 lg:mt-0 hidden sm:flex justify-end border border-black bg-white cursor-pointer flex-shrink-0">
-          <p className="text-gray-700 text-xs py-1 font-medium content-end">
-            SEARCH
-          </p>
-        </button> */}
-
-        <div className="md:flex w-full sm:w-1/4 mt-[80px] mr-0 lg:mr-24 sm:mr-0 xl:mt-11 mx-auto md:translate-x-52 sm:translate-x-72 fixed bottom-10 sm:relative border border-white sm:border-black bg-transparent sm:bg-white cursor-pointer">
+        <div
+          onClick={() => setShowSearch(true)}
+          className="md:flex w-full sm:w-1/4 mt-[80px] mr-0 lg:mr-24 sm:mr-0 xl:mt-11 mx-auto md:translate-x-52 sm:translate-x-72 hidden sm:relative border border-white sm:border-black bg-transparent sm:bg-white cursor-pointer"
+        >
           <button className="text-gray-700 text-xs py-2 font-medium w-full text-end px-5">
             SEARCH
           </button>
         </div>
 
-        <div className="flex gap-2 sm:gap-4 ml-28">
+        {/* <SearchBar /> */}
+
+        <div className="flex gap-2 sm:gap-4 ml-28 flex-shrink-0">
           <Search
+            onClick={() => setShowSearch(true)}
             size={30}
             color="black"
             className=" sm:hidden cursor-pointer"
@@ -1000,20 +1003,31 @@ const Navbar = () => {
             </div>
           </div>
 
-          <ShoppingCart
-            size={30}
-            color="black"
-            className=" sm:hidden cursor-pointer mr-4"
-          />
+          <Link to="/cart" className="relative">
+            <ShoppingCart
+              size={30}
+              color="black"
+              className=" sm:hidden cursor-pointer mr-4"
+            />
+            <p className="sm:hidden absolute right-[19px] top-[-6px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">
+              {getCartCount()}
+            </p>
+          </Link>
 
-          <Link className="flex-shrink-0 text-xs hidden sm:flex cursor-pointer">
+          <Link
+            to="/login_rigister"
+            className="flex-shrink-0 text-xs hidden sm:flex cursor-pointer"
+          >
             LOG IN
           </Link>
           <Link className="flex-shrink-0 text-xs hidden sm:flex cursor-pointer">
             HELP
           </Link>
-          <Link className="flex-shrink-0 text-xs hidden sm:flex cursor-pointer">
-            SHOPING CART(10)
+          <Link
+            to="/cart"
+            className="flex-shrink-0 text-xs hidden sm:flex cursor-pointer"
+          >
+            SHOPING CART({getCartCount()})
           </Link>
         </div>
       </div>
