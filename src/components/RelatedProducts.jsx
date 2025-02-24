@@ -1,11 +1,3 @@
-// import React from "react";
-
-// const RelatedProducts = () => {
-//   return <div>RelatedProducts</div>;
-// };
-
-// export default RelatedProducts;
-
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import Title from "./Title";
@@ -33,7 +25,7 @@ const RelatedProducts = ({ category, subCategory }) => {
   }, [products]);
 
   return (
-    <div className="my-24 hidden sm:block">
+    <div className="my-24 block">
       <div className="text-center text-xl sm:text-3xl py-2">
         <Title text1={"Related"} text2={"PRODUCTS"} />
       </div>
