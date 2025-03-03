@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { assets } from "../assets/assets";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const FooterGeneral = () => {
-  return (
+  const [visible, setVisible] = useState(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.includes("cart")) {
+      setVisible(false);
+    } else {
+      setVisible(true);
+    }
+  }, [location]);
+
+  return visible ? (
     <div className="px-12 py-4 mt-0 sm:mt-72">
       <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm">
         <div>
@@ -37,6 +51,8 @@ const FooterGeneral = () => {
         </p>
       </div>
     </div>
+  ) : (
+    ""
   );
 };
 

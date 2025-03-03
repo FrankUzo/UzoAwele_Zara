@@ -22,6 +22,7 @@ import "react-toastify/dist/ReactToastify.css";
 import SearchBar from "./components/SearchBar";
 import AddToCartBtn from "./components/AddToCartBtn";
 import Cart from "./pages/Cart";
+import PlaceOrder from "./pages/PlaceOrder";
 
 const App = () => {
   return (
@@ -46,6 +47,7 @@ const App = () => {
         <Route path="/login_rigister" element={<LoginRegiter />} />
         <Route path="/product/:productId" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/place-order" element={<PlaceOrder />} />
       </Routes>
       <FooterGeneral className="mt-72" />
       <AddToCartBtn />

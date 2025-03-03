@@ -3,6 +3,9 @@ import { ShopContext } from "../context/ShopContext";
 import { useEffect } from "react";
 import Title from "../components/Title";
 import { ImBin } from "react-icons/im";
+import CartTotal from "../components/CartTotal";
+import RelatedProducts from "../components/RelatedProducts";
+import CartTotalFooter from "../components/CartTotalFooter";
 
 const Cart = () => {
   const {
@@ -12,10 +15,14 @@ const Cart = () => {
     updateQuantity,
     showSearch,
     getCartCount,
+    navigate,
   } = useContext(ShopContext);
   console.log("Cart cartItems:", cartItems);
   console.log("Cart showSearch:", showSearch);
   const [cartData, setCartData] = useState([]);
+  console.log("Cart cartData:", cartData);
+  const [productData, setProductData] = useState(false);
+  console.log("Cart productData:", productData);
 
   useEffect(() => {
     const tempData = [];
@@ -32,6 +39,19 @@ const Cart = () => {
     }
     setCartData(tempData);
   }, [cartItems]);
+
+  const fetchProductData = async () => {
+    products.map((item) => {
+      if (item._id === cartData[cartData.length - 1]._id) {
+        setProductData(item);
+        return null;
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchProductData();
+  }, [cartData, products]);
 
   return cartData.length > 0 ? (
     <div
@@ -105,6 +125,27 @@ const Cart = () => {
             </div>
           );
         })}
+      </div>
+      <div className=" flex justify-end my-20">
+        <div className="w-full sm:w-[450px]">
+          <CartTotal />
+          <div className="w-full text-end">
+            <button
+              onClick={() => navigate("/place-order")}
+              className="bg-black text-white text-sm my-8 px-8 py-3"
+            >
+              PROCEED TO CHECKOUT
+            </button>
+          </div>
+        </div>
+      </div>
+      {/* --------------- Display Related Products */}
+      <RelatedProducts
+        category={productData.category}
+        subCategory={productData.subCategory}
+      />
+      <div className="fixed bottom-0">
+        <CartTotalFooter />
       </div>
     </div>
   ) : (
