@@ -1,7 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import { products } from "../assets/assets";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { use } from "react";
 
 export const ShopContext = createContext(null);
 
@@ -28,6 +29,8 @@ const ShopConextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
 
   const [showSize, setShowSize] = useState(false);
+
+  const navigate = useNavigate();
 
   const location = useLocation();
 
@@ -80,9 +83,9 @@ const ShopConextProvider = (props) => {
     setSubFilterProducts(productsCopy);
   };
 
-  const applyShowSize = (size) => {
-    setShowSize(true);
-  };
+  // const applyShowSize = (size) => {
+  //   setShowSize(true);
+  // };
 
   const addToCart = async (itemId, size) => {
     // if (!size) {
@@ -130,6 +133,21 @@ const ShopConextProvider = (props) => {
     setCartItems(cartData);
   };
 
+  const getCartAmount = () => {
+    let totalAmount = 0;
+    for (const items in cartItems) {
+      let itemInfo = products.find((product) => product._id === items);
+      for (const item in cartItems[items]) {
+        try {
+          if (cartItems[items][item] > 0) {
+            totalAmount += itemInfo.price * cartItems[items][item];
+          }
+        } catch (error) {}
+      }
+    }
+    return totalAmount;
+  };
+
   useEffect(() => {
     applyFilter();
   }, [firstCategoryPathName]);
@@ -167,6 +185,8 @@ const ShopConextProvider = (props) => {
     cartItems,
     getCartCount,
     updateQuantity,
+    getCartAmount,
+    navigate,
   };
 
   return (
