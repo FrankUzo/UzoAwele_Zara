@@ -2,7 +2,8 @@ import { createContext, useEffect, useState } from "react";
 import { products } from "../assets/assets";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { use } from "react";
+import Swal from "sweetalert2";
+// import { use } from "react";
 
 export const ShopContext = createContext(null);
 
@@ -17,16 +18,20 @@ const ShopConextProvider = (props) => {
   const [secondCategoryPathName, setSecondCategoryPathName] = useState("");
 
   const [search, setSearch] = useState("");
+  console.log("search:", search);
   const [showSearch, setShowSearch] = useState(false);
   const [showAddToCartBtn, setshowAddToCartBtn] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
 
   const [filterProducts, setFilterProducts] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
   const [subFilterProducts, setSubFilterProducts] = useState([]);
   console.log("shop filterProducts:", filterProducts);
   const [className, setClassName] = useState(
     "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6"
   );
-  const [cartItems, setCartItems] = useState({});
+  const [cartItems, setCartItems] = useState([]);
+  // localStorage.setItem("CARTCOUNT", JSON.stringify(cartCount));
 
   const [showSize, setShowSize] = useState(false);
 
@@ -59,19 +64,29 @@ const ShopConextProvider = (props) => {
     let productsCopy = products.slice();
     console.log("shop productsCopy", productsCopy);
 
-    console.log("firstCategoryPathName", firstCategoryPathName);
+    if (showSearch && search) {
+      productsCopy = productsCopy.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
 
     if (firstCategoryPathName !== null) {
       productsCopy = productsCopy.filter((item) =>
         firstCategoryPathName.includes(item.category)
       );
-    } else {
     }
+
     setFilterProducts(productsCopy);
   };
 
   const applySubFilter = () => {
     let productsCopy = products.slice();
+
+    if (showSearch && search) {
+      productsCopy = productsCopy.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
 
     if (firstCategoryPathName !== null && secondCategoryPathName) {
       productsCopy = productsCopy.filter(
@@ -83,78 +98,171 @@ const ShopConextProvider = (props) => {
     setSubFilterProducts(productsCopy);
   };
 
-  // const applyShowSize = (size) => {
-  //   setShowSize(true);
-  // };
+  function addToCart(cartitem, size) {
+    console.log("B4 addedPrdts cartitem:", cartitem);
+    console.log("B4 addedPrdts addedPrdts:", cartItems);
 
-  const addToCart = async (itemId, size) => {
-    // if (!size) {
-    //   toast.error("Select Product Size", {
-    //     position: "top-center",
-    //   });
-    //   return;
-    // }
+    const localStoragecartItems =
+      JSON.parse(localStorage.getItem("CARTITEMS")) ?? [];
 
-    let cartData = structuredClone(cartItems);
+    // var localStoragecartItems = JSON.parse(localStorage.getItem("CARTITEMS"));
+    console.log(
+      "localStoragecartItems localStoragecartItems:",
+      localStoragecartItems
+    );
 
-    if (cartData[itemId]) {
-      if (cartData[itemId][size]) {
-        cartData[itemId][size] += 1;
+    let alreadyInCartIndex = localStoragecartItems.findIndex(
+      (obj) => obj._id === cartitem._id
+    );
+
+    if (alreadyInCartIndex != -1) {
+      //its in cart
+      let item = localStoragecartItems[alreadyInCartIndex];
+      console.log("item.selectedSize item.selectedSize:", item.selectedSize);
+      if (!item.selectedSize.includes(size)) {
+        item.selectedSize.push(size);
+        item["selectedQty"] = item.selectedQty + 1;
+        localStoragecartItems[alreadyInCartIndex] = item;
       } else {
-        cartData[itemId][size] = 1;
+        //throw pop up
+        //product is in cart
+        //trying re-add it with same size again
+        //let user know that prdt with same size is already in cart
+
+        toast.error("Product with same size already in cart!!!", {
+          position: "top-center",
+        });
+        return;
       }
     } else {
-      cartData[itemId] = {};
-      cartData[itemId][size] = 1;
+      //new item to cart - not in cart
+      cartitem["selectedSize"] = [size];
+      cartitem["selectedQty"] = 1;
+      localStoragecartItems.push(cartitem);
     }
-    setCartItems(cartData);
-    // console.log("cartData:", cartData);
-  };
+
+    console.log("AFTER addedPrdts addedPrdts:", cartItems);
+    // const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+    setCartItems(localStoragecartItems);
+    localStorage.setItem("CARTITEMS", JSON.stringify(localStoragecartItems));
+    getCartAmount();
+    getCartCount();
+    // localStorage.setItem("CARTCOUNT", JSON.stringify(cartCount));
+  }
 
   const getCartCount = () => {
-    let totalCount = 0;
-    for (const items in cartItems) {
-      for (const item in cartItems[items]) {
-        try {
-          if (cartItems[items][item] > 0) {
-            totalCount += cartItems[items][item];
-          }
-        } catch (error) {}
-      }
-    }
-    return totalCount;
+    const localStoragecartItems =
+      JSON.parse(localStorage.getItem("CARTITEMS")) ?? [];
+    console.log(
+      "localStorage getCartCount getCartCount : ",
+      localStoragecartItems.length
+    );
+    setCartCount(localStoragecartItems.length);
+    localStorage.setItem(
+      "CARTCOUNT",
+      JSON.stringify(localStoragecartItems.length)
+    );
+
+    // return cartItems.length;
   };
 
-  const updateQuantity = async (itemId, size, quantity) => {
-    let cartData = structuredClone(cartItems);
+  const updateQuantity = async (item, quantity) => {
+    // console.log("updateQuantity updateQuantity: ", item);
+    // console.log("updateQuantity updateQuantit qty: ", quantity);
 
-    cartData[itemId][size] = quantity;
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const localStoragecartItems =
+          JSON.parse(localStorage.getItem("CARTITEMS")) ?? [];
 
-    setCartItems(cartData);
+        // console.log(
+        //   "localStorage CARTITEMS localStorage CARTITEMS:",
+        //   localStoragecartItems
+        // );
+
+        let newCartItem = localStoragecartItems.find((element) => {
+          console.log("element Id element Id element Id:", element._id);
+          console.log("item Id item Id item Id:", item._id);
+          return (
+            element._id == item._id //&& element.selectedSize == item.selectedSize
+          );
+        });
+
+        console.log("newCartItem newCartItem newCartItem:", newCartItem);
+        newCartItem["selectedQty"] = quantity;
+
+        console.log(
+          " cartItems before Spliced les see: ",
+          localStoragecartItems
+        );
+
+        if (quantity == 0) {
+          let elementIndex = localStoragecartItems.findIndex(
+            (obj) => obj._id === item._id
+          );
+          // cartItems[elementIndex] = newCartItem;
+          localStoragecartItems.splice(elementIndex, 1);
+          console.log(
+            " cartItems Spliced count: ",
+            localStoragecartItems.length
+          );
+          console.log(
+            " cartItems after Spliced les see: ",
+            localStoragecartItems
+          );
+        }
+
+        setCartItems(localStoragecartItems);
+        localStorage.setItem(
+          "CARTITEMS",
+          JSON.stringify(localStoragecartItems)
+        );
+
+        getCartCount();
+        getCartAmount();
+
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
   };
 
   const getCartAmount = () => {
-    let totalAmount = 0;
-    for (const items in cartItems) {
-      let itemInfo = products.find((product) => product._id === items);
-      for (const item in cartItems[items]) {
-        try {
-          if (cartItems[items][item] > 0) {
-            totalAmount += itemInfo.price * cartItems[items][item];
-          }
-        } catch (error) {}
-      }
+    const localStoragecartItems =
+      JSON.parse(localStorage.getItem("CARTITEMS")) ?? [];
+    var totalCartPrices = 0;
+    for (let index = 0; index < localStoragecartItems.length; index++) {
+      const item = localStoragecartItems[index];
+      console.log(" item.price: ", item.price);
+      console.log(" item.selectedQty: ", item.selectedQty);
+      totalCartPrices += item.price * item.selectedQty;
+      console.log("totalCartPrices : ", totalCartPrices);
     }
-    return totalAmount;
+    setTotalAmount(totalCartPrices);
   };
+
+  // useEffect(() => {
+  //   localStorage.setItem("CARTITEMS", JSON.stringify(cartItems));
+  // }, [cartItems]);
 
   useEffect(() => {
     applyFilter();
-  }, [firstCategoryPathName]);
+  }, [firstCategoryPathName, search, showSearch]);
 
   useEffect(() => {
     applySubFilter();
-  }, [firstCategoryPathName, secondCategoryPathName]);
+  }, [firstCategoryPathName, secondCategoryPathName, search, showSearch]);
 
   useEffect(() => {
     console.log("cartItems:", cartItems);
@@ -183,10 +291,14 @@ const ShopConextProvider = (props) => {
     showAddToCartBtn,
     setshowAddToCartBtn,
     cartItems,
+    setCartItems,
     getCartCount,
     updateQuantity,
     getCartAmount,
     navigate,
+    totalAmount,
+    cartCount,
+    setCartCount,
   };
 
   return (

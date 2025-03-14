@@ -52,20 +52,22 @@ const CartBtnOffCanvas = ({ isOpen1, setIsOpen1, productData }) => {
           </p>
 
           {Array.isArray(productData.size) &&
-            productData.size?.map((item, index) => (
+            productData.size?.map((selectedsize, index) => (
               <ul
                 className={`py-2 border text-gray-500 font-bold bg-slate-200 rounded-lg active:bg-slate-300 hover:bg-slate-500 hover:text-white ${
-                  item === size ? "border-orange-500 active:bg-slate-300" : ""
+                  selectedsize === size
+                    ? "border-orange-500 active:bg-slate-300"
+                    : ""
                 }`}
                 key={index}
               >
                 <li
                   onClick={() => {
-                    setSize(item);
-                    addToCart(productData._id, size);
+                    setSize(selectedsize);
+                    addToCart(productData, selectedsize);
                   }}
                 >
-                  {item}
+                  {selectedsize}
                 </li>
               </ul>
             ))}

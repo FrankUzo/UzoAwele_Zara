@@ -11,7 +11,7 @@ const ProductDetail = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const { productId } = useParams();
-  const { products, currency, addToCart, showSearch, cartItems } =
+  const { products, currency, addToCart, showSearch, cartItems, search } =
     useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState("");
@@ -23,6 +23,13 @@ const ProductDetail = () => {
     products.map((item) => {
       if (item._id === productId) {
         setProductData(item);
+
+        // if (showSearch && search) {
+        //   productData = productData.filter((item) =>
+        //     item.name.toLowerCase().includes(search.toLowerCase())
+        //   );
+        // }
+
         console.log("item:", item);
         setImage(item.image[0]);
         return null;
@@ -136,23 +143,28 @@ const ProductDetail = () => {
               Select Size
             </p>
             <div className="flex gap-2 justify-center">
-              {productData.size.map((item, index) => (
-                <button
-                  onClick={() => {
-                    addToCart(productData._id, size);
-                    setSize(item);
-                    setIsOpen2(true);
-                    setShowSize(false);
-                    setShowCompleteOrderBtn(true);
-                  }}
-                  className={`border py-2 px-4 bg-gray-100 ${
-                    item === size ? "border-orange-500 active:bg-slate-300" : ""
-                  }`}
-                  key={index}
-                >
-                  {item}
-                </button>
-              ))}
+              {productData.size.map((selectedsize, index) => {
+                console.log("looped size: ", selectedsize);
+                return (
+                  <button
+                    onClick={() => {
+                      addToCart(productData, selectedsize);
+                      setSize(selectedsize);
+                      setIsOpen2(true);
+                      setShowSize(false);
+                      setShowCompleteOrderBtn(true);
+                    }}
+                    className={`border py-2 px-4 bg-gray-100 ${
+                      selectedsize === size
+                        ? "border-orange-500 active:bg-slate-300"
+                        : ""
+                    }`}
+                    key={index}
+                  >
+                    {selectedsize}
+                  </button>
+                );
+              })}
             </div>
             <div className="flex justify-between mt-7">
               <p
