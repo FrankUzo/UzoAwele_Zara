@@ -64,7 +64,7 @@ const PlaceOrder = () => {
       </div>
       {/* ------------------ Right Side ------------------ */}
       <div className="mt-8">
-        <div className="mt-8 min-w-80">
+        <div className="mt-8 min-w-60 sm:min-w-80">
           <CartTotal />
         </div>
         <div className="mt-12">

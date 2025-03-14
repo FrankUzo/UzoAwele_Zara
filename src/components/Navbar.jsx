@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { assets } from "../assets/assets";
 import { Link } from "react-router-dom";
 import { IoIosPersonAdd } from "react-icons/io";
@@ -29,7 +29,7 @@ const Navbar = () => {
     // secondCategoryPathName,
     // setFirstCategoryPathName,
     // setSecondCategoryPathName,
-    getCartCount,
+    cartCount,
   } = useContext(ShopContext);
 
   return (
@@ -993,7 +993,10 @@ const Navbar = () => {
 
             <div className="hidden group-hover:block absolute dropdown-menu right-0 pt-4">
               <div className="flex flex-col bg-slate-100 text-gray-500 w-20 py-3 px-5 gap-2 border border-black rounded">
-                <Link className="flex-shrink-0 cursor-pointer hover:text-black">
+                <Link
+                  to="/login_rigister"
+                  className="flex-shrink-0 cursor-pointer hover:text-black"
+                >
                   Login
                 </Link>
                 <Link className="flex-shrink-0 cursor-pointer hover:text-black">
@@ -1010,7 +1013,7 @@ const Navbar = () => {
               className=" sm:hidden cursor-pointer mr-4"
             />
             <p className="sm:hidden absolute right-[19px] top-[-6px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">
-              {getCartCount()}
+              {cartCount}
             </p>
           </Link>
 
@@ -1027,7 +1030,7 @@ const Navbar = () => {
             to="/cart"
             className="flex-shrink-0 text-xs hidden sm:flex cursor-pointer"
           >
-            SHOPING CART({getCartCount()})
+            SHOPING CART({cartCount})
           </Link>
         </div>
       </div>
