@@ -25,6 +25,7 @@ const ShopConextProvider = (props) => {
 
   const [filterProducts, setFilterProducts] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  console.log("totalAmount totalAmount:", totalAmount);
   const [subFilterProducts, setSubFilterProducts] = useState([]);
   console.log("shop filterProducts:", filterProducts);
   const [className, setClassName] = useState(
@@ -147,16 +148,12 @@ const ShopConextProvider = (props) => {
     localStorage.setItem("CARTITEMS", JSON.stringify(localStoragecartItems));
     getCartAmount();
     getCartCount();
-    // localStorage.setItem("CARTCOUNT", JSON.stringify(cartCount));
   }
 
   const getCartCount = () => {
     const localStoragecartItems =
       JSON.parse(localStorage.getItem("CARTITEMS")) ?? [];
-    console.log(
-      "localStorage getCartCount getCartCount : ",
-      localStoragecartItems.length
-    );
+
     setCartCount(localStoragecartItems.length);
     localStorage.setItem(
       "CARTCOUNT",
@@ -170,72 +167,58 @@ const ShopConextProvider = (props) => {
     // console.log("updateQuantity updateQuantity: ", item);
     // console.log("updateQuantity updateQuantit qty: ", quantity);
 
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const localStoragecartItems =
-          JSON.parse(localStorage.getItem("CARTITEMS")) ?? [];
+    const localStoragecartItems =
+      JSON.parse(localStorage.getItem("CARTITEMS")) ?? [];
 
-        // console.log(
-        //   "localStorage CARTITEMS localStorage CARTITEMS:",
-        //   localStoragecartItems
-        // );
+    let newCartItem = localStoragecartItems.find((element) => {
+      console.log("element Id element Id element Id:", element._id);
+      console.log("item Id item Id item Id:", item._id);
+      return (
+        element._id == item._id //&& element.selectedSize == item.selectedSize
+      );
+    });
 
-        let newCartItem = localStoragecartItems.find((element) => {
-          console.log("element Id element Id element Id:", element._id);
-          console.log("item Id item Id item Id:", item._id);
-          return (
-            element._id == item._id //&& element.selectedSize == item.selectedSize
-          );
-        });
+    newCartItem["selectedQty"] = quantity;
 
-        console.log("newCartItem newCartItem newCartItem:", newCartItem);
-        newCartItem["selectedQty"] = quantity;
-
-        console.log(
-          " cartItems before Spliced les see: ",
-          localStoragecartItems
-        );
-
-        if (quantity == 0) {
+    if (quantity == 0) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
           let elementIndex = localStoragecartItems.findIndex(
             (obj) => obj._id === item._id
           );
           // cartItems[elementIndex] = newCartItem;
           localStoragecartItems.splice(elementIndex, 1);
-          console.log(
-            " cartItems Spliced count: ",
-            localStoragecartItems.length
+
+          setCartItems(localStoragecartItems);
+          localStorage.setItem(
+            "CARTITEMS",
+            JSON.stringify(localStoragecartItems)
           );
-          console.log(
-            " cartItems after Spliced les see: ",
-            localStoragecartItems
-          );
+
+          getCartCount();
+          getCartAmount();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
         }
+      });
+    } else {
+      setCartItems(localStoragecartItems);
+      localStorage.setItem("CARTITEMS", JSON.stringify(localStoragecartItems));
 
-        setCartItems(localStoragecartItems);
-        localStorage.setItem(
-          "CARTITEMS",
-          JSON.stringify(localStoragecartItems)
-        );
-
-        getCartCount();
-        getCartAmount();
-
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-      }
-    });
+      getCartCount();
+      getCartAmount();
+    }
   };
 
   const getCartAmount = () => {
@@ -250,6 +233,7 @@ const ShopConextProvider = (props) => {
       console.log("totalCartPrices : ", totalCartPrices);
     }
     setTotalAmount(totalCartPrices);
+    localStorage.setItem("TOTALCARTPRICE", JSON.stringify(totalCartPrices));
   };
 
   // useEffect(() => {
@@ -297,6 +281,7 @@ const ShopConextProvider = (props) => {
     getCartAmount,
     navigate,
     totalAmount,
+    setTotalAmount,
     cartCount,
     setCartCount,
   };

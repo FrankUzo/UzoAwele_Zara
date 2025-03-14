@@ -5,7 +5,7 @@ import Title from "./Title";
 
 const CartTotal = () => {
   const { currency, delivery_fee, totalAmount } = useContext(ShopContext);
-  console.log(" CartTotal CartTotal CartTotal: ", totalAmount);
+  // console.log(" CartTotal CartTotal CartTotal: ", totalAmount);
   return (
     <div className="w-full">
       <div className="text-2xl">
@@ -31,7 +31,7 @@ const CartTotal = () => {
           <b>Total</b>
           <b>
             {currency}
-            {totalAmount === 0 ? 0 : totalAmount}.00
+            {totalAmount === 0 ? 0 : totalAmount + delivery_fee}.00
           </b>
         </div>
       </div>

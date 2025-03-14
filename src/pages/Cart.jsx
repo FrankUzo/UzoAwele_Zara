@@ -139,7 +139,8 @@ const Cart = () => {
           <div></div>
         )}
       </div>
-      <div className="block text-start">
+
+      {/* <div className=" text-start bg-red-700">
         <p className="text-[11px] w-full py-6 text-gray-700">
           By continuing, I state that I have read and accept the
           <Link>
@@ -155,7 +156,8 @@ const Cart = () => {
           </Link>
           of Zara.
         </p>
-      </div>
+      </div> */}
+
       <div className="fixed bottom-0">
         <CartTotalFooter />
       </div>

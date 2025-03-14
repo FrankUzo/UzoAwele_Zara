@@ -1,9 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 
 const CartTotalFooter = () => {
-  const { currency, navigate, totalAmount } = useContext(ShopContext);
+  const { currency, navigate, setTotalAmount, totalAmount, delivery_fee } =
+    useContext(ShopContext);
+  console.log(
+    "totalAmounttotalAmounttotalAmounttotalAmounttotalAmount:",
+    totalAmount
+  );
+  useEffect(() => {
+    var totalAmount = JSON.parse(localStorage.getItem("TOTALCARTPRICE")) ?? [];
+    setTotalAmount(totalAmount);
+  }, []);
   return (
     <div className="flex justify-between xl:grid grid-cols-3 bg-white w-screen px-10 xl:px-28">
       <div className="hidden xl:block text-start">
@@ -36,7 +45,7 @@ const CartTotalFooter = () => {
             TOTAL
             <b>
               {currency}
-              {totalAmount === 0 ? 0 : totalAmount}.00
+              {totalAmount === 0 ? 0 : totalAmount + delivery_fee}.00
             </b>
           </p>
           <p className="text-[10px]">* Tax not included</p>
