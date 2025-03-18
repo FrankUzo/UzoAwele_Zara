@@ -13,9 +13,11 @@ const ProductDetail = () => {
   const { productId } = useParams();
   const { products, currency, addToCart, showSearch, cartItems, search } =
     useContext(ShopContext);
+  console.log("product detail cartItems product detail cartItems:", cartItems);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
+  console.log("size size size size size", size);
   const [showSize, setShowSize] = useState(false);
   const [showCompleteOrderBtn, setShowCompleteOrderBtn] = useState(false);
 
@@ -144,12 +146,17 @@ const ProductDetail = () => {
             </p>
             <div className="flex gap-2 justify-center">
               {productData.size.map((selectedsize, index) => {
-                console.log("looped size: ", selectedsize);
+                // console.log(
+                //   "cartItem selected size:",
+                //   cartItems[cartItems.length - 1].selectedSize
+                // );
                 return (
                   <button
                     onClick={() => {
                       addToCart(productData, selectedsize);
                       setSize(selectedsize);
+                      // cartItems[cartItems.length - 1].selectedSize.includes(selectedsize)
+                      // ? setIsOpen2(false) :
                       setIsOpen2(true);
                       setShowSize(false);
                       setShowCompleteOrderBtn(true);
