@@ -91,7 +91,10 @@ const Cart = () => {
                           {/* {product.selectedSize.join(", ")} */}
                           {product.selectedSize.map((item, index) => {
                             return (
-                              <div className="flex" key={index}>
+                              <div
+                                className="flex hover:bg-slate-300 p-1"
+                                key={index}
+                              >
                                 <div className="me-4 w-6">{item.title}</div>
                                 <input
                                   onChange={(e) => {
@@ -110,12 +113,12 @@ const Cart = () => {
                                       );
                                     }
                                   }}
-                                  className="w-10 cursor-pointer"
+                                  className="w-10 cursor-pointer me-2"
                                   type="number"
                                   min={1}
                                   defaultValue={sizeQuantity}
                                 />
-                                <div>
+                                <div className="pt-1 md:pt-1">
                                   <ImBin className="w-4 cursor-pointer" />
                                 </div>
                               </div>
@@ -131,7 +134,22 @@ const Cart = () => {
                     </div>
 
                     <div className="flex flex-col md:grid grid-cols-2 items-start mt-4 md:mt-0 md:items-center">
-                      <input
+                      <div className="flex justify-between items-center">
+                        <label className="text-[11px] font-bold text-blue-900 flex-shrink-0 me-4">
+                          TOTAL QAUNTITY FOR THIS PRODUCT:
+                        </label>
+                        <p
+                          onChange={(e) =>
+                            e.target.value === ""
+                              ? null
+                              : updateQuantity(product, Number(e.target.value))
+                          }
+                          className="border rounded max-w-12 md:max-w-12 text-center bg-blue-950 text-white text-[11px] px-1 sm:px-2 p-1"
+                        >
+                          {product.selectedQty}
+                        </p>
+                      </div>
+                      {/* <input
                         onChange={(e) =>
                           e.target.value === ""
                             ? null
@@ -143,7 +161,7 @@ const Cart = () => {
                         // value={finalProductQty}
                         defaultValue={product.selectedQty}
                         readOnly={true}
-                      />
+                      /> */}
 
                       <div className="w-full">
                         <ImBin
