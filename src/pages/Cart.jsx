@@ -19,13 +19,9 @@ const Cart = () => {
     cartCount,
     setCartCount,
     navigate,
-    sizeQuantity,
-    setSizeQuantity,
-    finalProductQty,
-    setFinalProductQty,
   } = useContext(ShopContext);
-  // const [onlyCartItems, setOnlyCartItems] = useState([]);
   const [productData, setProductData] = useState(false);
+  const [localProduct, setLocalProduct] = useState([]);
 
   const fetchProductData = async () => {
     products.map((item) => {
@@ -40,14 +36,13 @@ const Cart = () => {
 
   useEffect(() => {
     console.log("USE EFFECT FIRED!!!!");
-
     const localCartItems =
       cartItems.length == 0
         ? JSON.parse(localStorage.getItem("CARTITEMS")) ?? []
         : cartItems;
     setCartItems(localCartItems);
+    setLocalProduct(localCartItems.selectedSize);
     setCartCount(localCartItems.length);
-    console.log("Local storage CART onlyCartItems onlyCartItems:", cartItems);
   }, []);
 
   useEffect(() => {
@@ -74,7 +69,6 @@ const Cart = () => {
 
           <div className="flex flex-col md:grid grid-cols-[1fr_1fr_1fr] gap-5 gap-y-12 my-10">
             {cartItems.map((product, index) => {
-              var finalSizes = 0;
               return (
                 <div
                   key={index}
@@ -88,38 +82,36 @@ const Cart = () => {
                       </p>
                       <div className="w-full mt-3 md:mt-0">
                         <p className="flex flex-col w-26 px-2 sm:px-2 sm:py-1 md:flex border bg-slate-50 float-start md:float-end">
-                          {/* {product.selectedSize.join(", ")} */}
-                          {product.selectedSize.map((item, index) => {
+                          {product.selectedSize.map((sizeObject, sizeIndex) => {
                             return (
                               <div
                                 className="flex hover:bg-slate-300 p-1"
-                                key={index}
+                                key={sizeIndex}
                               >
-                                <div className="me-4 w-6">{item.title}</div>
+                                <div className="me-4 w-6">{sizeObject.title}</div>
                                 <input
                                   onChange={(e) => {
                                     if (e.target.value === "") {
                                       return null;
                                     } else {
-                                      // setSizeQuantity(
-                                      //   // product,
-                                      //   Number(e.target.value)
-                                      // );
-
                                       updateQuantity(
                                         product,
                                         Number(e.target.value),
-                                        item
+                                        sizeObject
                                       );
                                     }
                                   }}
                                   className="w-10 cursor-pointer me-2"
                                   type="number"
                                   min={1}
-                                  defaultValue={sizeQuantity}
+                                  defaultValue={sizeObject.qty}
                                 />
                                 <div className="pt-1 md:pt-1">
-                                  <ImBin className="w-4 cursor-pointer" />
+                                  {/* <ImBin className="w-4 cursor-pointer" /> */}
+                                  <ImBin
+                                    onClick={() => updateQuantity(product, 0, sizeObject)} //deleting only this sizeObject
+                                    className="w-4 mr-4 sm:w-5 cursor-pointenr mt-1 sm:mt-5 md:mt-1 float-start md:float-end"
+                                  />
                                 </div>
                               </div>
                             );
@@ -136,37 +128,20 @@ const Cart = () => {
                     <div className="flex flex-col md:grid grid-cols-2 items-start mt-4 md:mt-0 md:items-center">
                       <div className="flex justify-between items-center">
                         <label className="text-[11px] font-bold text-blue-900 flex-shrink-0 me-4">
-                          TOTAL QAUNTITY FOR THIS PRODUCT:
+                          TOTAL QUANTITY:
                         </label>
-                        <p
-                          onChange={(e) =>
-                            e.target.value === ""
-                              ? null
-                              : updateQuantity(product, Number(e.target.value))
+                        <p className="border rounded max-w-12 md:max-w-12 text-center bg-blue-950 text-white text-[11px] px-1 sm:px-2 p-1">
+                          {
+                          product.selectedSize.reduce(function(sizePrev, sizeCur) {
+                                return sizePrev + sizeCur.qty;
+                              }, 0)
                           }
-                          className="border rounded max-w-12 md:max-w-12 text-center bg-blue-950 text-white text-[11px] px-1 sm:px-2 p-1"
-                        >
-                          {product.selectedQty}
                         </p>
                       </div>
-                      {/* <input
-                        onChange={(e) =>
-                          e.target.value === ""
-                            ? null
-                            : updateQuantity(product, Number(e.target.value))
-                        }
-                        className="border max-w-20 md:max-w-full px-1 sm:px-2 p-1"
-                        type="number"
-                        min={1}
-                        // value={finalProductQty}
-                        defaultValue={product.selectedQty}
-                        readOnly={true}
-                      /> */}
-
                       <div className="w-full">
                         <ImBin
-                          onClick={() => updateQuantity(product, 0)}
-                          className="w-4 mr-4 sm:w-5 cursor-pointer mt-1 sm:mt-5 md:mt-1 float-start md:float-end"
+                          onClick={() => updateQuantity(product, 0)} //deleting entire product
+                          className="w-4 mr-4 sm:w-5 cursor-pointenr mt-1 sm:mt-5 md:mt-1 float-start md:float-end"
                         />
                       </div>
                     </div>
