@@ -134,8 +134,8 @@ const Cart = () => {
                     </div>
 
                     <div className="flex flex-col md:grid grid-cols-2 items-start mt-4 md:mt-0 md:items-center">
-                      <div className="flex justify-between items-center">
-                        <label className="text-[11px] font-bold text-blue-900 flex-shrink-0 me-4">
+                      <div className="flex justify-between items-center w-40">
+                        <label className="text-[11px] font-bold text-blue-900 me-2">
                           TOTAL QAUNTITY FOR THIS PRODUCT:
                         </label>
                         <p
