@@ -3,6 +3,8 @@ import { ShopContext } from "../context/ShopContext";
 import { useEffect } from "react";
 import Title from "../components/Title";
 import { ImBin } from "react-icons/im";
+import { FaFolderPlus } from "react-icons/fa6";
+import { FaFolderMinus } from "react-icons/fa6";
 import CartTotal from "../components/CartTotal";
 import RelatedProducts from "../components/RelatedProducts";
 import CartTotalFooter from "../components/CartTotalFooter";
@@ -19,6 +21,8 @@ const Cart = () => {
     cartCount,
     setCartCount,
     navigate,
+    increaseQuantityBtn,
+    decreaseQuantityBtn,
   } = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [localProduct, setLocalProduct] = useState([]);
@@ -81,17 +85,17 @@ const Cart = () => {
                         {product.name}
                       </p>
                       <div className="w-full mt-3 md:mt-0">
-                        <p className="flex flex-col w-26 px-2 sm:px-2 sm:py-1 md:flex border bg-slate-50 float-start md:float-end">
+                        <p className="flex flex-col w-26 px-2 sm:px-0 sm:py-0 md:flex border bg-slate-50 float-start md:float-end">
                           {product.selectedSize.map((sizeObject, sizeIndex) => {
                             return (
                               <div
-                                className="flex hover:bg-slate-300 p-1"
+                                className="flex bg-slate-100 hover:bg-slate-300 p-1 items-center"
                                 key={sizeIndex}
                               >
-                                <div className="me-4 w-6">
+                                <div className="me-2 w-6 bg-slate-200 text-center">
                                   {sizeObject.title}
                                 </div>
-                                <input
+                                {/* <input
                                   onChange={(e) => {
                                     if (e.target.value === "") {
                                       return null;
@@ -107,14 +111,56 @@ const Cart = () => {
                                   type="number"
                                   min={1}
                                   defaultValue={sizeObject.qty}
-                                />
-                                <div className="pt-1 md:pt-1">
+                                /> */}
+                                <div className="flex gap-1">
+                                  <button
+                                    onClick={() =>
+                                      decreaseQuantityBtn(
+                                        product,
+                                        sizeObject.qty,
+                                        sizeObject
+                                      )
+                                    }
+                                    className="cursor-pointer"
+                                  >
+                                    <FaFolderMinus color="blue" size={23} />
+                                  </button>
+                                  <p
+                                    onChange={(e) => {
+                                      if (e.target.value === "") {
+                                        return null;
+                                      } else {
+                                        updateQuantity(
+                                          product,
+                                          Number(e.target.value),
+                                          sizeObject
+                                        );
+                                      }
+                                    }}
+                                    className="bg-blue-400 text-white font-bold px-2 rounded border border-black"
+                                  >
+                                    {sizeObject.qty}
+                                  </p>
+                                  <button
+                                    onClick={() =>
+                                      increaseQuantityBtn(
+                                        product,
+                                        sizeObject.qty,
+                                        sizeObject
+                                      )
+                                    }
+                                    className="cursor-pointer"
+                                  >
+                                    <FaFolderPlus color="blue" size={23} />
+                                  </button>
+                                </div>
+                                <div className="items-center text-center p-1">
                                   {/* <ImBin className="w-4 cursor-pointer" /> */}
                                   <ImBin
                                     onClick={() =>
                                       updateQuantity(product, 0, sizeObject)
                                     } //deleting only this sizeObject
-                                    className="w-4 mr-4 sm:w-5 cursor-pointenr mt-1 sm:mt-5 md:mt-1 float-start md:float-end"
+                                    className="w-4 sm:w-5 cursor-pointer mt-1 sm:mt-1 md:mt-1"
                                   />
                                 </div>
                               </div>
@@ -147,7 +193,7 @@ const Cart = () => {
                       <div className="w-full">
                         <ImBin
                           onClick={() => updateQuantity(product, 0)} //deleting entire product
-                          className="w-4 mr-4 sm:w-5 cursor-pointenr mt-1 sm:mt-5 md:mt-1 float-start md:float-end"
+                          className="w-4 mr-4 sm:w-5 cursor-pointer mt-1 sm:mt-5 md:mt-1 float-start md:float-end"
                         />
                       </div>
                     </div>
