@@ -384,7 +384,7 @@ const ShopConextProvider = (props) => {
         return sizePrev + sizeCur.qty;
       },
       0);
-      totalCartPrices += item.price * totalQty;//item.selectedQty;
+      totalCartPrices += item.price * totalQty;
     }
     setTotalAmount(totalCartPrices);
     localStorage.setItem("TOTALCARTPRICE", JSON.stringify(totalCartPrices));
