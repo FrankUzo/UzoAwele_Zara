@@ -370,10 +370,21 @@ const ShopConextProvider = (props) => {
   const getCartAmount = () => {
     const localStoragecartItems =
       JSON.parse(localStorage.getItem("CARTITEMS")) ?? [];
+
+      
+
+
     var totalCartPrices = 0;
     for (let index = 0; index < localStoragecartItems.length; index++) {
       const item = localStoragecartItems[index];
-      totalCartPrices += item.price * item.selectedQty;
+     let totalQty = item.selectedSize.reduce(function (
+        sizePrev,
+        sizeCur
+      ) {
+        return sizePrev + sizeCur.qty;
+      },
+      0);
+      totalCartPrices += item.price * totalQty;//item.selectedQty;
     }
     setTotalAmount(totalCartPrices);
     localStorage.setItem("TOTALCARTPRICE", JSON.stringify(totalCartPrices));
