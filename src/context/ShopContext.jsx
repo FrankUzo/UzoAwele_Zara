@@ -12,6 +12,8 @@ const ShopConextProvider = (props) => {
   const delivery_fee = 10;
   const [firstCategoryPathName, setFistCategoryPathName] = useState("");
   const [secondCategoryPathName, setSecondCategoryPathName] = useState("");
+  const [showCategoryFilter, setShowCategoryFilter] = useState("WOMAN");
+  const [visible, setVisible] = useState(false);
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [showAddToCartBtn, setshowAddToCartBtn] = useState(false);
@@ -25,7 +27,9 @@ const ShopConextProvider = (props) => {
     "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6"
   );
   const [cartItems, setCartItems] = useState([]);
-  const [showSize, setShowSize] = useState(false);
+  const [num, setNum] = useState(0);
+  const [index, setIndex] = useState(0);
+
   const navigate = useNavigate();
   const location = useLocation();
   const currentURL = location.pathname;
@@ -42,6 +46,59 @@ const ShopConextProvider = (props) => {
   let smClass =
     "grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12";
   let lgClass = "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
+
+  const carouselToggleByCategory = (num) => {
+    if (curr != num) {
+      setIndex((curr) => (curr = num));
+    } else {
+    }
+
+    // setSubImageIndex(subImageIndex==0 ? );
+  };
+
+  const [previousLocation, setPreviousLocation] = useState(null);
+
+  const [actualPreviouslocation, setActualPreviouslocation] = useState(null);
+
+  useEffect(() => {
+    // Update previous location when the location changes
+    console.log("useEffect FIRED!!! prev --- location:", location);
+    // setPreviousLocation(location);
+    setPreviousLocation(location);
+    setActualPreviouslocation(previousLocation);
+    console.log("after useEffect FIRED!!! previousLocation:", previousLocation);
+    console.log(
+      "after useEffect FIRED!!! actualPreviouslocation:",
+      actualPreviouslocation
+    );
+  }, [location]);
+
+  function goBack() {
+    console.log("PREV currentURL:", currentURL);
+    // console.log("PREV actual prev location:", previousLocation);
+    console.log(
+      "PREV actual prev location actualPreviouslocation:",
+      actualPreviouslocation
+    );
+
+    if (currentURL != "/") {
+      return;
+    } else if (currentURL == "/" && actualPreviouslocation != null) {
+      if (actualPreviouslocation.pathname != "/") {
+        //do ur routing here instead of going back to google
+        console.log("prev go back");
+        window.history.back();
+      } else {
+        // navigate("/Women/view_all_new");
+        console.log("prev Push to women page");
+        navigate("/Women/view_all_new");
+      }
+    } else {
+      console.log("prev else return");
+      // return;
+      navigate("/Women/view_all_new");
+    }
+  }
 
   const applyFilter = () => {
     let productsCopy = products.slice();
@@ -427,6 +484,16 @@ const ShopConextProvider = (props) => {
     setFinalProductQty,
     increaseQuantityBtn,
     decreaseQuantityBtn,
+    num,
+    setNum,
+    carouselToggleByCategory,
+    index,
+    setIndex,
+    goBack,
+    showCategoryFilter,
+    setShowCategoryFilter,
+    visible,
+    setVisible,
   };
 
   return (

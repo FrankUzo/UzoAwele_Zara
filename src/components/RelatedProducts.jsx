@@ -6,7 +6,7 @@ import { FaRegSquare } from "react-icons/fa";
 import { GoColumns } from "react-icons/go";
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
 
-const RelatedProducts = ({ category, subCategory }) => {
+const RelatedProducts = ({ category, subCategory, setIsOpen2, isOpen2 }) => {
   const { products, className, setClassName, mdClass, smClass, lgClass } =
     useContext(ShopContext);
   const [related, setRelated] = useState([]);
@@ -65,6 +65,8 @@ const RelatedProducts = ({ category, subCategory }) => {
             price={item.price}
             size={item.size}
             classVisibility={classVisibility}
+            setIsOpen2={setIsOpen2}
+            isOpen2={isOpen2}
           />
         ))}
       </div>
