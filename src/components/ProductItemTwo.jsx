@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { IoLogInSharp } from "react-icons/io5";
 import { Plus } from "react-feather";
 import SizesModal from "./SizesModal";
+import { use } from "react";
 
 const ProductItemTwo = ({
   id,
@@ -13,6 +14,8 @@ const ProductItemTwo = ({
   size,
   classVisibility,
   lgClass,
+  setIsOpen2,
+  isOpen2,
 }) => {
   const [openModal, setOpenModal] = useState(false);
   console.log("openModal:", openModal);
@@ -26,7 +29,11 @@ const ProductItemTwo = ({
         }`}
       >
         <div className=" inline-block">
-          <Link className=" cursor-pointer" to={`/product/${id}`}>
+          <Link
+            className=" cursor-pointer"
+            to={`/product/${id}`}
+            onClick={() => setIsOpen2(false)}
+          >
             <img
               className="relative hover:scale-110 transition ease-in-out min-w-full h-full"
               src={image}
@@ -66,18 +73,26 @@ const ProductItemTwo = ({
             classVisibility === true ? "hidden" : "block border border-t-black"
           }`}
         >
-          <div className="flex flex-row items-center justify-between">
-            <Link to={`/product/${id}`}>
-              <p className="pt-1 pb-2 text-sm">{name} ...</p>
-            </Link>
-            <Link to="/login_rigister" className="cursor-pointer">
-              <IoLogInSharp size={25} />
-            </Link>
+          <div
+            className={`${
+              isOpen2 ? "flex flex-row-reverse justify-between" : ""
+            }`}
+          >
+            <div className="flex flex-row items-center justify-between">
+              <Link to={`/product/${id}`}>
+                <p className={`pt-1 pb-2 text-sm ${isOpen2 ? "hidden" : ""}`}>
+                  {name} ...
+                </p>
+              </Link>
+              <Link to="/login_rigister" className="cursor-pointer">
+                <IoLogInSharp size={25} />
+              </Link>
+            </div>
+            <p className="text-sm font-medium">
+              {currency}
+              {price}
+            </p>
           </div>
-          <p className="text-sm font-medium">
-            {currency}
-            {price}
-          </p>
         </div>
       </div>
     </div>

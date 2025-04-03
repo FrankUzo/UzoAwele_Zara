@@ -111,14 +111,14 @@ export const Secondslides = [
     mainImage: carousel_img3,
     subImages: [sub_carousel_img7, sub_carousel_img8, sub_carousel_img9],
   },
-  {
-    mainImage: carousel_img4,
-    subImages: [sub_carousel_img10, sub_carousel_img11, sub_carousel_img12],
-  },
-  {
-    mainImage: carousel_img5,
-    subImages: [sub_carousel_img13, carousel_img2, carousel_img4],
-  },
+  // {
+  //   mainImage: carousel_img4,
+  //   subImages: [sub_carousel_img10, sub_carousel_img11, sub_carousel_img12],
+  // },
+  // {
+  //   mainImage: carousel_img5,
+  //   subImages: [sub_carousel_img13, carousel_img2, carousel_img4],
+  // },
 ];
 
 export const products = [

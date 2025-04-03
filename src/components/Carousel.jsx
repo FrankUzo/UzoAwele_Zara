@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
 import { ChevronRight, ChevronLeft } from "react-feather";
+import { ShopContext } from "../context/ShopContext";
 
 const Carousel = ({
   children: slides,
@@ -7,18 +9,36 @@ const Carousel = ({
   autoSlideInterval = 3000,
   Secondslides,
 }) => {
-  const [index, setIndex] = useState(0);
+  const {
+    index,
+    setIndex,
+    showCategoryFilter,
+    setShowCategoryFilter,
+    visible,
+    setVisible,
+  } = useContext(ShopContext);
   // const [subImageIndex, setSubImageIndex] = useState(0);
 
   const prev = () => {
-    setIndex((index) => (index == 0 ? Secondslides.length - 1 : index - 1));
-    //goto implementation
-    // setIndex((curr) => (curr = 2));
-    // setSubImageIndex(subImageIndex==0 ? );
+    let actualNumber = index == 0 ? Secondslides.length - 1 : index - 1;
+    setIndex(actualNumber);
+    let category =
+      actualNumber == 0 ? "WOMAN" : actualNumber == 1 ? "MAN" : "KIDS";
+    setShowCategoryFilter(category);
+    if (visible == true) {
+      setVisible(true);
+    }
   };
 
   const next = () => {
-    setIndex((index) => (index == Secondslides.length - 1 ? 0 : index + 1));
+    let actualNumber = index == Secondslides.length - 1 ? 0 : index + 1;
+    setIndex(actualNumber);
+    let category =
+      actualNumber == 0 ? "WOMAN" : actualNumber == 1 ? "MAN" : "KIDS";
+    setShowCategoryFilter(category);
+    if (visible == true) {
+      setVisible(true);
+    }
   };
 
   useEffect(() => {

@@ -8,7 +8,7 @@ const AddToCartOffcanvas = ({ isOpen2, setIsOpen2, productData, size }) => {
   return (
     <div className="relative">
       <div
-        className={`fixed top-0 right-0 z-50 w-full md:w-[420px] h-full bg-white transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 z-50 w-full md:w-[420px] h-full bg-white transform transition-transform duration-300 ease-in-out overflow-y-scroll ${
           isOpen2 ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -38,10 +38,17 @@ const AddToCartOffcanvas = ({ isOpen2, setIsOpen2, productData, size }) => {
           {/* --------------- Display Related Products */}
           <div className="mt-10">
             <p>PRODUCTS YOU MIGHT LIKE.</p>
-            <RelatedProducts
-              category={productData.category}
-              subCategory={productData.subCategory}
-            />
+
+            {productData ? (
+              <RelatedProducts
+                category={productData.category}
+                subCategory={productData.subCategory}
+                setIsOpen2={setIsOpen2}
+                isOpen2={isOpen2}
+              />
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
