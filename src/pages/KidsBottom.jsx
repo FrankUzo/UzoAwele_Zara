@@ -4,12 +4,12 @@ import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 
 const KidsBottom = () => {
-  const { subFilterProducts } = useContext(ShopContext);
+  const { subFilterProducts, showSearch } = useContext(ShopContext);
 
   console.log(subFilterProducts);
   return (
     <div>
-      <div className="relative top-40">
+      <div className={`${showSearch ? "top-20" : "relative top-24 sm:top-44"}`}>
         <div className="text-center py-8 text-3xl">
           <Title text1={"KIDS"} text2={"BOTTOM-WEARS COLLECTIONS"} />
         </div>
