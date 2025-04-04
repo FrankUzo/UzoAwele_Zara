@@ -15,12 +15,13 @@ const MenTop = () => {
     mdClass,
     smClass,
     lgClass,
+    showSearch,
   } = useContext(ShopContext);
   const [classVisibility, setClassVisibility] = useState(false);
 
   return (
     <div>
-      <div className="relative top-40">
+      <div className={`${showSearch ? "top-20" : "relative top-24 sm:top-44"}`}>
         <div className="text-center py-8 text-3xl">
           <Title text1={"MEN"} text2={"TOP WEARS COLLECTIONS"} />
         </div>

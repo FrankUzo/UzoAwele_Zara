@@ -82,23 +82,27 @@ const Navbar = () => {
         </div>
 
         <div
-          className={`overflow-hidden  transition-all py-2  mt-[10px] sm:mt-[180px] text-black ${
+          className={`overflow-hidden  transition-all py-2  mt-[10px] sm:mt-[185px] text-black ${
             visible
               ? "bg-white w-full md:w-[400px] sm:w-[300px absolute top-[55px] left-0 sm:top-2"
               : ""
           }`}
         >
-          {/* <ul
-            className={`flex gap-4 mt-15 sm:mt-[70px] px-4 pt-8 pb-2  overflow-x-scroll bg-transparent ${
+          <ul
+            className={`flex ml-12 gap-4 mt-4 sm:mt-[20px]  overflow-x-scroll bg-transparent font-medium ${
               visible ? "w-full sm:w-[350px] bg-white" : "hidden"
             }`}
           >
             <li
               onClick={() => {
                 setShowCategoryFilter("WOMAN");
+                setIndex(0);
+                carouselToggleByCategory();
               }}
               className={`flex-shrink-0 items-center gap-1 cursor-pointer text-md text-gray-600 ${
-                showCategoryFilter === "WOMAN" ? "text-black font-bold" : ""
+                showCategoryFilter === "WOMAN" || showCategoryFilter === "HOME"
+                  ? "text-black font-bold bg-slate-300 px-2 py-1 rounded-md"
+                  : ""
               }`}
             >
               WOMAN
@@ -106,9 +110,13 @@ const Navbar = () => {
             <li
               onClick={() => {
                 setShowCategoryFilter("MAN");
+                setIndex(1);
+                carouselToggleByCategory();
               }}
               className={`flex-shrink-0 items-center gap-1 cursor-pointer text-md text-gray-600 ${
-                showCategoryFilter === "MAN" ? "text-black font-bold" : ""
+                showCategoryFilter === "MAN"
+                  ? "text-black font-bold bg-slate-300 px-2 py-1 rounded-md"
+                  : ""
               }`}
             >
               MAN
@@ -116,14 +124,18 @@ const Navbar = () => {
             <li
               onClick={() => {
                 setShowCategoryFilter("KIDS");
+                setIndex(2);
+                carouselToggleByCategory();
               }}
               className={`flex-shrink-0 items-center gap-1 cursor-pointer text-md text-gray-600 ${
-                showCategoryFilter === "KIDS" ? "text-black font-bold" : ""
+                showCategoryFilter === "KIDS"
+                  ? "text-black font-bold bg-slate-300 px-2 py-1 rounded-md"
+                  : ""
               }`}
             >
               KIDS
             </li>
-          </ul> */}
+          </ul>
 
           <div
             className={`${
@@ -137,7 +149,8 @@ const Navbar = () => {
                 {/* New Collections filter */}
                 <div
                   className={`m-6 px-2 text-black ${
-                    visible && showCategoryFilter === "WOMAN"
+                    (visible && showCategoryFilter === "WOMAN") ||
+                    (visible && showCategoryFilter === "HOME")
                       ? "block"
                       : "hidden"
                   }`}
@@ -206,14 +219,18 @@ const Navbar = () => {
                 {/* sales filter */}
                 <div
                   className={`m-6 px-2 text-black ${
-                    visible && showCategoryFilter === "WOMAN"
+                    (visible && showCategoryFilter === "WOMAN") ||
+                    (visible && showCategoryFilter === "HOME")
                       ? "block"
                       : "hidden"
                   }`}
                 >
                   <div
                     className={`${
-                      showCategoryFilter === "WOMAN" ? "block" : "hidden"
+                      showCategoryFilter === "WOMAN" ||
+                      showCategoryFilter === "HOME"
+                        ? "block"
+                        : "hidden"
                     }`}
                   >
                     <div className="flex justify-between font-bold mb-3 pb-2">
@@ -277,7 +294,8 @@ const Navbar = () => {
                 {/* Filter footer buttons */}
                 <div
                   className={`ms-3 text-black ${
-                    visible && showCategoryFilter === "WOMAN"
+                    (visible && showCategoryFilter === "WOMAN") ||
+                    (visible && showCategoryFilter === "HOME")
                       ? "block"
                       : "hidden"
                   }`}
@@ -668,7 +686,10 @@ const Navbar = () => {
 
         <div className="flex gap-2 sm:gap-4 ml-28 flex-shrink-0">
           <Search
-            onClick={() => setShowSearch(true)}
+            onClick={() => {
+              setShowSearch(true);
+              goBack();
+            }}
             size={30}
             color="black"
             className=" sm:hidden cursor-pointer"
@@ -739,11 +760,13 @@ const Navbar = () => {
               carouselToggleByCategory(num);
             }}
             className={`flex flex-col items-center gap-1 cursor-pointer text-xs hover:text-gray-600 hover:bg-gray-200 hover:px-3 hover:py-1 hover:rounded ${
-              showCategoryFilter === "WOMAN" ? "text-black font-bold" : ""
+              showCategoryFilter === "WOMAN" || showCategoryFilter === "HOME"
+                ? "text-black font-bold"
+                : ""
             }`}
           >
             WOMAN
-            {showCategoryFilter === "WOMAN" ? (
+            {showCategoryFilter === "WOMAN" || showCategoryFilter === "HOME" ? (
               <hr className=" w-2/4 border-none h-[2.5px] bg-red-700" />
             ) : (
               <></>
