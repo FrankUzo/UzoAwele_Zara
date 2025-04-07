@@ -3,19 +3,32 @@ import { Link, useParams } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { IoLogInSharp } from "react-icons/io5";
 import { MdOutlineStar } from "react-icons/md";
+import { FaLongArrowAltLeft } from "react-icons/fa";
 import RelatedProducts from "../components/RelatedProducts";
 import AddToCartOffcanvas from "../components/AddToCartOffcanvas";
 import ModalOffCanvas from "../components/ModalOffCanvas";
+import { Divide } from "react-feather";
 
 const ProductDetail = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const { productId } = useParams();
-  const { products, currency, addToCart, showSearch, cartItems, search } =
-    useContext(ShopContext);
+  const {
+    products,
+    currency,
+    addToCart,
+    showSearch,
+    cartItems,
+    search,
+    goBackShoppingPg,
+    image,
+    setImage,
+    fetchRelatedProducts,
+    item,
+  } = useContext(ShopContext);
   console.log("product detail cartItems product detail cartItems:", cartItems);
   const [productData, setProductData] = useState(false);
-  const [image, setImage] = useState("");
+
   const [size, setSize] = useState("");
   console.log("size size size size size", size);
   const [showSize, setShowSize] = useState(false);
@@ -49,6 +62,15 @@ const ProductDetail = () => {
         showSearch ? " mt-0" : "mt-24 sm:mt-48"
       }`}
     >
+      <div
+        onClick={goBackShoppingPg}
+        className="text-end me-24 mb-4 cursor-pointer"
+      >
+        <button className="bg-gray-400 py-2 px-3 text-white rounded-lg flex">
+          <FaLongArrowAltLeft size={30} className=" content-center me-2" />
+          Continue Shopping
+        </button>
+      </div>
       {/* ---------------------- Product Data ----------------- */}
       <div className="flex gap-0 xl:gap-12 flex-col sm:flex-row">
         {/* --------------- Description & Review Section ------------------ */}
@@ -205,6 +227,7 @@ const ProductDetail = () => {
           isOpen2={isOpen2}
           setIsOpen2={setIsOpen2}
           productData={productData}
+          // image={image}
           size={size}
         />
         <ModalOffCanvas isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -214,6 +237,10 @@ const ProductDetail = () => {
       <RelatedProducts
         category={productData.category}
         subCategory={productData.subCategory}
+        productDataId={productData._id}
+        item={item}
+        fetchRelatedProducts={fetchRelatedProducts}
+        image={image}
       />
     </div>
   ) : (

@@ -30,9 +30,50 @@ const ShopConextProvider = (props) => {
   const [num, setNum] = useState(0);
   const [index, setIndex] = useState(0);
 
+  const [image, setImage] = useState("");
+  const [related, setRelated] = useState([]);
+  const [currentBackPath, setCurrentBackPath] = useState("");
+
   const navigate = useNavigate();
   const location = useLocation();
   const currentURL = location.pathname;
+
+  const fetchRelatedProducts = (prdt) => {
+    console.log("In shop context prdt: ", prdt);
+    console.log("In shop context products.length: ", products.length);
+    if (products.length > 0 && prdt != null) {
+      let productsCopy = products.slice();
+      console.log(
+        "filtered productsCopy unfiltered productsCopy:",
+        productsCopy.length
+      );
+
+      productsCopy = productsCopy.filter(
+        (item) => prdt.category === item.category
+      );
+
+      productsCopy = productsCopy.filter(
+        (item) => prdt.subCategory === item.subCategory
+      );
+
+      productsCopy = productsCopy.filter((item) => prdt._id != item._id); //REMOVES PRDT IN VIEW
+      console.log(
+        "filtered productsCopy filtered productsCopy:",
+        productsCopy.slice(0, 6)
+      );
+
+      // console.log(productsCopy.slice(0, 5));
+      setRelated(productsCopy.slice(0, 6));
+    }
+  };
+
+  useEffect(() => {
+    fetchRelatedProducts(null);
+  }, [products]);
+
+  useEffect(() => {
+    getCartCount();
+  }, []);
 
   useEffect(() => {
     var splittedUrl = currentURL.split("/");
@@ -72,6 +113,11 @@ const ShopConextProvider = (props) => {
       actualPreviouslocation
     );
   }, [location]);
+
+  function goBackShoppingPg() {
+    // console.log("goBackShoppingPg goBackShoppingPg goBackShoppingPg");
+    navigate(currentBackPath);
+  }
 
   function goBack() {
     console.log("PREV currentURL:", currentURL);
@@ -183,7 +229,7 @@ const ShopConextProvider = (props) => {
   const getCartCount = () => {
     const localStoragecartItems =
       JSON.parse(localStorage.getItem("CARTITEMS")) ?? [];
-
+    console.log("localStoragecartItems.length: ", localStoragecartItems.length);
     setCartCount(localStoragecartItems.length);
     localStorage.setItem(
       "CARTCOUNT",
@@ -494,6 +540,14 @@ const ShopConextProvider = (props) => {
     setShowCategoryFilter,
     visible,
     setVisible,
+    goBackShoppingPg,
+    image,
+    setImage,
+    related,
+    setRelated,
+    fetchRelatedProducts,
+    currentBackPath,
+    setCurrentBackPath,
   };
 
   return (
