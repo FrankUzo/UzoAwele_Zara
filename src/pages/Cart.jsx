@@ -23,6 +23,8 @@ const Cart = () => {
     navigate,
     increaseQuantityBtn,
     decreaseQuantityBtn,
+    fetchRelatedProducts,
+    item,
   } = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [localProduct, setLocalProduct] = useState([]);
@@ -220,6 +222,8 @@ const Cart = () => {
             <RelatedProducts
               category={productData.category}
               subCategory={productData.subCategory}
+              item={item}
+              fetchRelatedProducts={fetchRelatedProducts}
             />
           ) : (
             <div></div>
@@ -251,12 +255,8 @@ const Cart = () => {
       </div>
     </div>
   ) : (
-    <div
-      className={`borderborder-t-2 border-b-2 py-10 justify-center items-center bg-gray-400 text-3xl text-white font-medium ${
-        showSearch ? "mt-5" : "mt-48"
-      }`}
-    >
-      <marquee behavior="" direction="">
+    <div className="borderborder-t-2 border-b-2 py-10 justify-center items-center bg-gray-400 text-3xl text-white font-medium fixed bottom-52 w-full">
+      <marquee className="" behavior="" direction="">
         YOU HAVE AN EMPTY CART!!!
       </marquee>
     </div>

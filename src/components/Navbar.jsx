@@ -67,7 +67,9 @@ const Navbar = () => {
           <Link to="/">
             <img
               onClick={() => {
-                setShowCategoryFilter("HOME");
+                // setShowCategoryFilter("HOME");
+                // setIndex(0);
+                // carouselToggleByCategory();
               }}
               src={assets.logo_icon}
               className={`w-[70px] sm:w-[180px] cursor-pointer ${
@@ -176,7 +178,7 @@ const Navbar = () => {
                       <Link
                         onClick={() => {
                           setVisible(false);
-                          setFilter("Topwear");
+                          // setFilter("Topwear");
                         }}
                         to="/Women/Topwear"
                         className="border-b-2 pb-1 mb-2 text-gray-600 font-semibold"
@@ -187,7 +189,7 @@ const Navbar = () => {
                         to="/Women/Bottomwear"
                         onClick={() => {
                           setVisible(false);
-                          setFilter("Bottomwear");
+                          // setFilter("Bottomwear");
                         }}
                         className="border-b-2 pb-1 mb-2 text-gray-600 font-semibold"
                       >
@@ -197,7 +199,7 @@ const Navbar = () => {
                         to="/Women/Winterwear"
                         onClick={() => {
                           setVisible(false);
-                          setFilter("Winterwear");
+                          // setFilter("Winterwear");
                         }}
                         className="border-b-2 pb-1 mb-2 text-gray-600 font-semibold"
                       >
@@ -353,7 +355,7 @@ const Navbar = () => {
                       <Link
                         onClick={() => {
                           setVisible(false);
-                          setFilter("Topwear");
+                          // setFilter("Topwear");
                         }}
                         to="/Men/Topwear"
                         className="border-b-2 pb-1 mb-2 text-gray-600 font-semibold"
@@ -364,7 +366,7 @@ const Navbar = () => {
                         to="/Men/Bottomwear"
                         onClick={() => {
                           setVisible(false);
-                          setFilter("Bottomwear");
+                          // setFilter("Bottomwear");
                         }}
                         className="border-b-2 pb-1 mb-2 text-gray-600 font-semibold"
                       >
@@ -374,7 +376,7 @@ const Navbar = () => {
                         to="/Men/Winterwear"
                         onClick={() => {
                           setVisible(false);
-                          setFilter("Winterwear");
+                          // setFilter("Winterwear");
                         }}
                         className="border-b-2 pb-1 mb-2 text-gray-600 font-semibold"
                       >
@@ -523,7 +525,7 @@ const Navbar = () => {
                       <Link
                         onClick={() => {
                           setVisible(false);
-                          setFilter("Topwear");
+                          // setFilter("Topwear");
                         }}
                         to="/Kids/Topwear"
                         className="border-b-2 pb-1 mb-2 text-gray-600 font-semibold"
@@ -534,7 +536,7 @@ const Navbar = () => {
                         to="/Kids/Bottomwear"
                         onClick={() => {
                           setVisible(false);
-                          setFilter("Bottomwear");
+                          // setFilter("Bottomwear");
                         }}
                         className="border-b-2 pb-1 mb-2 text-gray-600 font-semibold"
                       >
@@ -544,7 +546,7 @@ const Navbar = () => {
                         to="/Kids/Winterwear"
                         onClick={() => {
                           setVisible(false);
-                          setFilter("Winterwear");
+                          // setFilter("Winterwear");
                         }}
                         className="border-b-2 pb-1 mb-2 text-gray-600 font-semibold"
                       >
@@ -741,16 +743,12 @@ const Navbar = () => {
             to="/cart"
             className="flex-shrink-0 text-xs hidden sm:flex cursor-pointer"
           >
-            SHOPING CART({cartCount})
+            SHOPPING CART({cartCount})
           </Link>
         </div>
       </div>
 
-      <div
-        className={`mt-[1px] lg:mt-2 md:mt-1 xl:mt-7 ${
-          visible ? "w-full pl-[30px] lg:pl-[62px] md:pl-[36px]" : "hidden"
-        }`}
-      >
+      <div className="mt-[1px] lg:mt-2 md:mt-1 xl:mt-7 w-full pl-[30px] lg:pl-[62px] md:pl-[36px]">
         <ul className="hidden sm:flex gap-3">
           <li
             onClick={() => {

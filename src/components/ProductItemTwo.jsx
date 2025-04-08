@@ -16,30 +16,45 @@ const ProductItemTwo = ({
   lgClass,
   setIsOpen2,
   isOpen2,
+  fetchRelatedProducts,
+  item,
+  path,
+  currentBackPath,
+  setCurrentBackPath,
 }) => {
   const [openModal, setOpenModal] = useState(false);
   console.log("openModal:", openModal);
-  const { currency } = useContext(ShopContext);
+  const { currency, navigate } = useContext(ShopContext);
 
   return (
     <div className="text-gray-500">
       <div
         className={`relative overflow-hidden border border-black ${
-          classVisibility === true ? "pb-0" : "pb-2"
+          classVisibility === true ? "pb-0" : ""
         }`}
       >
         <div className=" inline-block">
-          <Link
+          <button
             className=" cursor-pointer"
-            to={`/product/${id}`}
-            onClick={() => setIsOpen2(false)}
+            // to={`/product/${id}`}
+            onClick={() => {
+              console.log("inside prdtTwo on Click id: ", id);
+              console.log("inside prdtTwo on Click path: ", path);
+              {
+                navigate(`/product/${id}`);
+              }
+              console.log("clicked item is 4 IMG: ", item);
+              fetchRelatedProducts(item);
+              setCurrentBackPath(path);
+              setIsOpen2(false);
+            }}
           >
             <img
               className="relative hover:scale-110 transition ease-in-out min-w-full h-full"
               src={image}
               alt=""
             />
-          </Link>
+          </button>
 
           <div className="absolute top-56 insert-0 w-full">
             {openModal === true ? (
@@ -59,6 +74,8 @@ const ProductItemTwo = ({
           >
             <button
               onClick={() => {
+                console.log("clicked item is 4 btn: ", item);
+                fetchRelatedProducts(item);
                 setOpenModal(true);
               }}
               className="relative  bottom-[6px] left-[5px] bg-black"
@@ -70,7 +87,7 @@ const ProductItemTwo = ({
 
         <div
           className={`${
-            classVisibility === true ? "hidden" : "block border border-t-black"
+            isOpen2 === true ? "hidden" : "block border border-t-black"
           }`}
         >
           <div
@@ -80,15 +97,18 @@ const ProductItemTwo = ({
           >
             <div className="flex flex-row items-center justify-between">
               <Link to={`/product/${id}`}>
-                <p className={`pt-1 pb-2 text-sm ${isOpen2 ? "hidden" : ""}`}>
+                <p className={`text-sm ${isOpen2 ? "hidden" : ""}`}>
                   {name} ...
                 </p>
               </Link>
-              <Link to="/login_rigister" className="cursor-pointer">
+              <Link
+                to="/login_rigister"
+                className={`cursor-pointer ${isOpen2 ? "hidden" : ""}`}
+              >
                 <IoLogInSharp size={25} />
               </Link>
             </div>
-            <p className="text-sm font-medium">
+            <p className={`text-sm font-medium ${isOpen2 ? "hidden" : ""}`}>
               {currency}
               {price}
             </p>

@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-feather";
 import { MdOutlineClose } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import RelatedProducts from "./RelatedProducts";
+import { ShopContext } from "../context/ShopContext";
 
-const AddToCartOffcanvas = ({ isOpen2, setIsOpen2, productData, size }) => {
+const AddToCartOffcanvas = ({
+  isOpen2,
+  setIsOpen2,
+  productData,
+  size,
+  // image,
+}) => {
+  const { image, fetchRelatedProducts, item } = useContext(ShopContext);
   return (
     <div className="relative">
       <div
@@ -24,7 +32,7 @@ const AddToCartOffcanvas = ({ isOpen2, setIsOpen2, productData, size }) => {
           </div>
           <h4 className="text-1xl font-bold">ADDED TO YOUR CART</h4>
           <div className="flex mt-10">
-            <img src={productData.image[0]} className="w-40 me-5" alt="" />
+            <img src={image} className="w-40 me-5" alt="" />
             <div className="flex flex-col">
               <p className="mt-5">{productData.name}</p>
               <p className="font-semibold text-[12px]">SIZE: {size}</p>
@@ -43,8 +51,11 @@ const AddToCartOffcanvas = ({ isOpen2, setIsOpen2, productData, size }) => {
               <RelatedProducts
                 category={productData.category}
                 subCategory={productData.subCategory}
+                productDataId={productData._id}
                 setIsOpen2={setIsOpen2}
                 isOpen2={isOpen2}
+                item={item}
+                fetchRelatedProducts={fetchRelatedProducts}
               />
             ) : (
               ""

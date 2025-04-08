@@ -7,7 +7,7 @@ import { FaRegSquare } from "react-icons/fa";
 import { GoColumns } from "react-icons/go";
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
 
-const MenTop = () => {
+const GeneralSubCategory = ({ name, type, path }) => {
   const {
     subFilterProducts,
     className,
@@ -16,6 +16,9 @@ const MenTop = () => {
     smClass,
     lgClass,
     showSearch,
+    fetchRelatedProducts,
+    currentBackPath,
+    setCurrentBackPath,
   } = useContext(ShopContext);
   const [classVisibility, setClassVisibility] = useState(false);
 
@@ -23,10 +26,10 @@ const MenTop = () => {
     <div>
       <div className={`${showSearch ? "top-20" : "relative top-24 sm:top-44"}`}>
         <div className="text-center py-8 text-3xl">
-          <Title text1={"MEN"} text2={"TOP WEARS COLLECTIONS"} />
+          <Title text1={name} text2={`${type} WEARS COLLECTIONS`} />
         </div>
         <div className="flex justify-end mr-4 mb-4">
-          <FaRegSquare
+          {/* <FaRegSquare
             onClick={() => {
               setClassName(lgClass);
               setClassVisibility(true);
@@ -46,7 +49,7 @@ const MenTop = () => {
               setClassVisibility(true);
             }}
             className="mr-4 cursor-pointer text-xl sm:text-3xl"
-          />
+          /> */}
         </div>
         <div className={className}>
           {subFilterProducts.map((item, index) => (
@@ -58,6 +61,11 @@ const MenTop = () => {
               price={item.price}
               size={item.size}
               classVisibility={classVisibility}
+              item={item}
+              fetchRelatedProducts={fetchRelatedProducts}
+              path={path}
+              currentBackPath={currentBackPath}
+              setCurrentBackPath={setCurrentBackPath}
             />
           ))}
         </div>
@@ -66,4 +74,4 @@ const MenTop = () => {
   );
 };
 
-export default MenTop;
+export default GeneralSubCategory;

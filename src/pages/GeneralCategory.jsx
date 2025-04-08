@@ -5,8 +5,9 @@ import ProductItem from "../components/ProductItem";
 import { FaRegSquare } from "react-icons/fa";
 import { GoColumns } from "react-icons/go";
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
+import ProductItemTwo from "../components/ProductItemTwo";
 
-const WomenNew = () => {
+const GeneralCategory = ({ name, path }) => {
   const {
     filterProducts,
     className,
@@ -15,6 +16,9 @@ const WomenNew = () => {
     smClass,
     lgClass,
     showSearch,
+    fetchRelatedProducts,
+    currentBackPath,
+    setCurrentBackPath,
   } = useContext(ShopContext);
   const [classVisibility, setClassVisibility] = useState(false);
 
@@ -23,10 +27,10 @@ const WomenNew = () => {
   return (
     <div className={`${showSearch ? "top-20" : "relative top-24 sm:top-44"}`}>
       <div className="text-center pt-3 sm:pt-8 pb-2 text-2xl sm:text-3xl">
-        <Title text1={"WOMEN"} text2={"NEW COLLECTIONS"} />
+        <Title text1={name} text2={"NEW COLLECTIONS"} />
       </div>
       <div className="flex justify-end mr-4 mb-4">
-        <FaRegSquare
+        {/* <FaRegSquare
           onClick={() => {
             setClassName(lgClass);
             setClassVisibility(true);
@@ -46,22 +50,38 @@ const WomenNew = () => {
             setClassVisibility(true);
           }}
           className="mr-4 cursor-pointer text-xl sm:text-3xl"
-        />
+        /> */}
       </div>
       <div className={className}>
         {filterProducts.map((item, index) => (
-          <ProductItem
+          <ProductItemTwo
             key={index}
             id={item._id}
-            image={item.image}
+            image={item.image[0]}
             name={item.name.slice(0, 20)}
             price={item.price}
+            size={item.size}
             classVisibility={classVisibility}
+            item={item}
+            fetchRelatedProducts={fetchRelatedProducts}
+            path={path}
+            currentBackPath={currentBackPath}
+            setCurrentBackPath={setCurrentBackPath}
           />
+          //   <ProductItem
+          //     key={index}
+          //     id={item._id}
+          //     image={item.image}
+          //     name={item.name.slice(0, 20)}
+          //     price={item.price}
+          //     classVisibility={classVisibility}
+          //     item={item}
+          //     fetchRelatedProducts={fetchRelatedProducts}
+          //   />
         ))}
       </div>
     </div>
   );
 };
 
-export default WomenNew;
+export default GeneralCategory;
