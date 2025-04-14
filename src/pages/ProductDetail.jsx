@@ -8,7 +8,8 @@ import RelatedProducts from "../components/RelatedProducts";
 import AddToCartOffcanvas from "../components/AddToCartOffcanvas";
 import ModalOffCanvas from "../components/ModalOffCanvas";
 import { Divide } from "react-feather";
-
+// import "./../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.css";
 const ProductDetail = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
@@ -66,6 +67,7 @@ const ProductDetail = () => {
         onClick={goBackShoppingPg}
         className="text-end me-24 mb-4 cursor-pointer"
       >
+        <button className="btn btn-primary">Primary</button>
         <button className="bg-gray-400 py-2 px-3 text-white rounded-lg flex">
           <FaLongArrowAltLeft size={30} className=" content-center me-2" />
           Continue Shopping

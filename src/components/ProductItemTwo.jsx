@@ -5,6 +5,8 @@ import { IoLogInSharp } from "react-icons/io5";
 import { Plus } from "react-feather";
 import SizesModal from "./SizesModal";
 import { use } from "react";
+// import "./../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.css";
 
 const ProductItemTwo = ({
   id,
@@ -35,7 +37,7 @@ const ProductItemTwo = ({
       >
         <div className=" inline-block">
           <button
-            className=" cursor-pointer"
+            className="cursor-pointer"
             // to={`/product/${id}`}
             onClick={() => {
               console.log("inside prdtTwo on Click id: ", id);
@@ -45,8 +47,8 @@ const ProductItemTwo = ({
               }
               console.log("clicked item is 4 IMG: ", item);
               fetchRelatedProducts(item);
-              setCurrentBackPath(path);
               setIsOpen2(false);
+              setCurrentBackPath(path);
             }}
           >
             <img

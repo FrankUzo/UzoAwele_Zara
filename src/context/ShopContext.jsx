@@ -3,6 +3,7 @@ import { products } from "../assets/assets";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+// import "bootstrap/dist/css/bootstrap.css";
 // import { use } from "react";
 
 export const ShopContext = createContext(null);
@@ -23,9 +24,16 @@ const ShopConextProvider = (props) => {
   const [sizeQuantity, setSizeQuantity] = useState(1);
   const [finalProductQty, setFinalProductQty] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
-  const [className, setClassName] = useState(
-    "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6"
-  );
+
+  // let mdClass = "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6";
+  // let mdClass = "row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 g-4";
+  let mdClass = "grid grid-auto-fit-xs";
+  let smClass =
+    "grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12";
+  let lgClass = "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
+
+  const [className, setClassName] = useState(mdClass);
+
   const [cartItems, setCartItems] = useState([]);
   const [num, setNum] = useState(0);
   const [index, setIndex] = useState(0);
@@ -35,6 +43,7 @@ const ShopConextProvider = (props) => {
   const [currentBackPath, setCurrentBackPath] = useState("");
 
   const navigate = useNavigate();
+
   const location = useLocation();
   const currentURL = location.pathname;
 
@@ -83,11 +92,6 @@ const ShopConextProvider = (props) => {
     setSecondCategoryPathName(secondWanted);
   }, [currentURL]);
 
-  let mdClass = "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6";
-  let smClass =
-    "grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12";
-  let lgClass = "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
-
   const carouselToggleByCategory = (num) => {
     if (curr != num) {
       setIndex((curr) => (curr = num));
@@ -101,6 +105,11 @@ const ShopConextProvider = (props) => {
 
   const [actualPreviouslocation, setActualPreviouslocation] = useState(null);
 
+  function goBackShoppingPg() {
+    // console.log("goBackShoppingPg goBackShoppingPg goBackShoppingPg");
+    navigate(currentBackPath);
+  }
+
   useEffect(() => {
     // Update previous location when the location changes
     console.log("useEffect FIRED!!! prev --- location:", location);
@@ -113,11 +122,6 @@ const ShopConextProvider = (props) => {
       actualPreviouslocation
     );
   }, [location]);
-
-  function goBackShoppingPg() {
-    // console.log("goBackShoppingPg goBackShoppingPg goBackShoppingPg");
-    navigate(currentBackPath);
-  }
 
   function goBack() {
     console.log("PREV currentURL:", currentURL);
@@ -135,7 +139,6 @@ const ShopConextProvider = (props) => {
         console.log("prev go back");
         window.history.back();
       } else {
-        // navigate("/Women/view_all_new");
         console.log("prev Push to women page");
         navigate("/Women/view_all_new");
       }
@@ -474,20 +477,13 @@ const ShopConextProvider = (props) => {
     const localStoragecartItems =
       JSON.parse(localStorage.getItem("CARTITEMS")) ?? [];
 
-      
-
-
     var totalCartPrices = 0;
     for (let index = 0; index < localStoragecartItems.length; index++) {
       const item = localStoragecartItems[index];
-     let totalQty = item.selectedSize.reduce(function (
-        sizePrev,
-        sizeCur
-      ) {
+      let totalQty = item.selectedSize.reduce(function (sizePrev, sizeCur) {
         return sizePrev + sizeCur.qty;
-      },
-      0);
-      totalCartPrices += item.price * totalQty;//item.selectedQty;
+      }, 0);
+      totalCartPrices += item.price * totalQty; //item.selectedQty;
     }
     setTotalAmount(totalCartPrices);
     localStorage.setItem("TOTALCARTPRICE", JSON.stringify(totalCartPrices));

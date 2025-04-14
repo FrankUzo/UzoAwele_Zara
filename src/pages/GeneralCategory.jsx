@@ -6,6 +6,7 @@ import { FaRegSquare } from "react-icons/fa";
 import { GoColumns } from "react-icons/go";
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
 import ProductItemTwo from "../components/ProductItemTwo";
+// import "bootstrap/dist/css/bootstrap.css";
 
 const GeneralCategory = ({ name, path }) => {
   const {
@@ -52,6 +53,9 @@ const GeneralCategory = ({ name, path }) => {
           className="mr-4 cursor-pointer text-xl sm:text-3xl"
         /> */}
       </div>
+
+      {/* <div className="container-fluid"> */}
+      {/* <div className="row"> */}
       <div className={className}>
         {filterProducts.map((item, index) => (
           <ProductItemTwo
@@ -81,6 +85,8 @@ const GeneralCategory = ({ name, path }) => {
         ))}
       </div>
     </div>
+    // </div>
+    // </div>
   );
 };
 
