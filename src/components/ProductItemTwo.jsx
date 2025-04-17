@@ -52,7 +52,7 @@ const ProductItemTwo = ({
             }}
           >
             <img
-              className="relative hover:scale-110 transition ease-in-out min-w-full h-full"
+              className="image relative hover:scale-110 transition ease-in-out min-w-full"
               src={image}
               alt=""
             />

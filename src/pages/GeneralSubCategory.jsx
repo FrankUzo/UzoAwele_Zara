@@ -57,7 +57,7 @@ const GeneralSubCategory = ({ name, type, path }) => {
               key={index}
               id={item._id}
               image={item.image[0]}
-              name={item.name.slice(0, 20)}
+              name={item.name.slice(0, 15)}
               price={item.price}
               size={item.size}
               classVisibility={classVisibility}
