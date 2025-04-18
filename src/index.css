@@ -29,3 +29,34 @@ a.active {
     background-color: #555;
   }
 }
+
+/* Desktops */
+@media (max-width: 1600px) {
+  .itemContainer {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: center;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .itemContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  .itemContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+  }
+  .image {
+    aspect-ratio: 3/5;
+    object-fit: cover;
+  }
+}

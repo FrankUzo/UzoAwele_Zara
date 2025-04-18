@@ -26,8 +26,8 @@ const ShopConextProvider = (props) => {
   const [totalAmount, setTotalAmount] = useState(0);
 
   // let mdClass = "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6";
-  // let mdClass = "row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 g-4";
-  let mdClass = "grid grid-auto-fit-xs";
+  let mdClass = "row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-6";
+  // let mdClass = "grid grid-auto-fit-xs";
   let smClass =
     "grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12";
   let lgClass = "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
