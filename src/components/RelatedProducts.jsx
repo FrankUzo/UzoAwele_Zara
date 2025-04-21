@@ -59,7 +59,7 @@ const RelatedProducts = ({
           size={30}
         /> */}
       </div>
-      <div className={className}>
+      <div className="itemContainer">
         {related.map((item, index) => (
           <ProductItemTwo
             key={index}

@@ -13,6 +13,7 @@ import Cart from "./pages/Cart";
 import PlaceOrder from "./pages/PlaceOrder";
 import GeneralCategory from "./pages/GeneralCategory";
 import GeneralSubCategory from "./pages/GeneralSubCategory";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
@@ -116,6 +117,7 @@ const App = () => {
         <Route path="/product/:productId" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/place-order" element={<PlaceOrder />} />
+        <Route path="/login_rigister/login" element={<Login />} />
       </Routes>
       <FooterGeneral className="mt-72" />
       <AddToCartBtn />

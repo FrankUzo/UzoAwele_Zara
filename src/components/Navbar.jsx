@@ -348,7 +348,7 @@ const Navbar = () => {
                           // setFirstCategoryPathName("Women");
                         }}
                         to="/Men/view_all_new"
-                        className="border-b-2 pb-1 mb-2"
+                        className="border-b-2 pb-1 mb-2 text-gray-600 font-semibold"
                       >
                         /// MEN NEW
                       </Link>
