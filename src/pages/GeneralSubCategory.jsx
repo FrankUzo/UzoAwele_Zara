@@ -51,7 +51,7 @@ const GeneralSubCategory = ({ name, type, path }) => {
             className="mr-4 cursor-pointer text-xl sm:text-3xl"
           /> */}
         </div>
-        <div className={className}>
+        <div className="itemContainer">
           {subFilterProducts.map((item, index) => (
             <ProductItemTwo
               key={index}
